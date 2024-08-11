@@ -65,4 +65,14 @@ vim.opt.wrap = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+-- Open file on the same line as when closed
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	pattern = { "*" },
+	callback = function()
+		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+			vim.api.nvim_exec("normal! g'\"", false)
+		end
+	end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
