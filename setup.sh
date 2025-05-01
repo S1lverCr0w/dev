@@ -1,40 +1,92 @@
 #!/usr/bin/env bash
 
-#script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-datetime=`date +%y%m%d_%H%M%S`
+set -euo pipefail
+
+#script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+datetime=$(date +%y%m%d_%H%M%S)
+
 
 # fonts #
-paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome
+fonts() {
+	paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome
+}
+
 
 # nvim #
-paru -S nvim bash-language-server pyright
+nvim() {
+	paru -S nvim --noconfirm bash-language-server pyright
 
-mv ~/.config/nvim ~/.config/nvim_$datetime
-mv ~/.local/share/nvim ~/.local/share/nvim_$datetime
-rm -rf ~/.cache/nvim
+	[ -d $HOME/.config/nvim/ ] && mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
+	[ -d $HOME/.local/share/nvim/ ] && mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	rm -rf $HOME/.cache/nvim
 
-cp -r nvim/ ~/.config/nvim
+	mkdir -p "$HOME/.config/nvim"
+	cp -r "nvim/" "$HOME/.config/"
+}
+
 
 # alacritty #
-paru -S alacritty
-mv ~/.config/alacritty ~/.config/alacritty_$datetime
-cp -r alacritty/ ~/.config/alacritty/
+alacritty() {
+	paru -S --noconfirm alacritty
+	[ -d $HOME/.config/alacritty/ ] && mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
+	mkdir -p "$HOME/.config/alacritty/"
+	cp -r "alacritty/" "$HOME/.config/"
+}
+
 
 # helix #
-paru -S helix
-mv ~/.config/helix ~/.config/helix$datetime
-cp -r helix/ ~/.config/helix/
+helix() {
+	paru -S --noconfirm helix
+	[ -d $HOME/.config/helix/ ] && mv $HOME/.config/helix $HOME/.config/helix$datetime
+	mkdir -p "$HOME/.config/helix/"
+	cp -r "helix/" "$HOME/.config/"
+}
+
 
 # python #
-pacman -S pyside6-tools qt6-tools python-poetry
+python() {
+	pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
+}
+
 
 # nano #
-mv ~/.config/nano/nanorc ~/.config/nano/nanorc_$datetime
-cp nanorc ~/.config/nano/
+nano() {
+	[ -d $HOME/.config/nano/nanorc ] && mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
+	mkdir -p "$HOME/.config/nano/"
+	cp "nanorc" "$HOME/.config/nano/"
+}
 
-# confing #
-mv ~/.bashrc ~/.bashrc_%datetime
-cp bashrc ~/.bashrc
-mv ~/.bash_profile ~/.bash_profile_%datetime
-cp bash_profile ~/.bash_profile
+
+# confings #
+configs() {
+	[ -f $HOME/.bashrc ] && mv $HOME/.bashrc $HOME/.bashrc_$datetime
+	cp "bashrc" "$HOME/.bashrc"
+	[ -f $HOME/.bash_profile ] && mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
+	cp "bash_profile" "$HOME/.bash_profile"
+}
+
+
+main() {
+	if [[ $# -eq 0 ]]; then
+		fonts
+		nvim
+		alacritty
+		helix
+		python
+		nano
+		configs
+	else
+		for component in "$@"; do
+			if declare -f "$component" > /dev/null; then
+				"$component"
+			else
+				echo "Unknown argument: $component"
+				exit 1
+			fi
+		done
+	fi
+}
+
+
+main "$@"
