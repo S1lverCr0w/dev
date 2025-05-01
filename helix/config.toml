@@ -1,0 +1,35 @@
+theme = "onedark"
+
+[editor]
+true-color = true
+line-number = "relative"
+mouse = false
+bufferline = "multiple"
+rulers = [80]
+auto-pairs = false
+end-of-line-diagnostics = "hint"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+tab = "│"
+#tabpad = "·"
+
+[editor.inline-diagnostics]
+cursor-line = "disable"
+other-lines = "disable"
+
+[editor.lsp]
+auto-signature-help = false
+display-messages = false
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]

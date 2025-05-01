@@ -1,0 +1,19 @@
+[general]
+import = ["~/.config/alacritty/one_dark.toml"]
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "JetBrains Mono"
+style = "ExtraLight"
+
+#[keyboard]
+#bindings = [
+#	{ key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+#]
+
+# [[hints.enabled]]
+# regex = "[^ ]+\\.rs:\\d+:\\d+"
+# command = { program = "code", args = [ "--goto" ] }
+# mouse = { enabled = true }
