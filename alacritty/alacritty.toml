@@ -8,10 +8,10 @@ size = 10.0
 family = "JetBrains Mono"
 style = "ExtraLight"
 
-# [keyboard]
-# bindings = [
-#	{ key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
-# ]
+[keyboard]
+bindings = [
+	{ key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+]
 
 # [[hints.enabled]]
 # regex = "[^ ]+\\.rs:\\d+:\\d+"
