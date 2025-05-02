@@ -7,13 +7,14 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
+        "keyboard-state",
+        "hyprland/window",
         "hyprland/mode",
         "hyprland/scratchpad",
         "custom/media"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-right": [
         "mpd",
@@ -25,7 +26,6 @@
         "memory",
         "temperature",
         "backlight",
-        "keyboard-state",
         "hyprland/language",
         "battery",
         "battery#bat2",
@@ -64,7 +64,7 @@
     },
     "hypreland/scratchpad": {
         "format": "{icon} {count}",
-        "show-empty": false,
+        "show-empty": true,
         "format-icons": ["", ""],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
@@ -113,7 +113,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M %d/%m/%y}",
+        "format-alt": "{:%a, %d %b %Y  %H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
