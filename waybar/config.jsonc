@@ -34,22 +34,22 @@
         "custom/power"
     ],
     // Modules configuration
-     "hyprland/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         "format": "{name}: {icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
-     },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "on-click": "activate",
+        //"on-scroll-up": "hyprctl dispatch workspace e-1",
+        //"on-scroll-down": "hyprctl dispatch workspace e+1",
+        "format-icons": {
+          "active": "",
+          "urgent": "",
+          "default": ""
+        }
+      },
+    "hyprland/window": {
+        "format": "{}"
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -167,12 +167,15 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format": "[ifname}",
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-ethernet": " {ifname}",
         "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-disconnected": "⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "max-length": 20
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
