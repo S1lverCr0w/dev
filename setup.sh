@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dry_run=false
+
 
 set -euo pipefail
 
@@ -9,86 +11,105 @@ datetime=$(date +%y%m%d_%H%M%S)
 #
 # fonts #
 fonts() {
-	paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
+	log paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
 
 
 # nvim #
 nvim() {
-	paru -S nvim --noconfirm bash-language-server pyright fzf
+	 log paru -S nvim --noconfirm bash-language-server pyright fzf
 
-	[ -d $HOME/.config/nvim/ ] && mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
-	[ -d $HOME/.local/share/nvim/ ] && mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
-	rm -rf $HOME/.cache/nvim
+	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
+	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	log rm -rf $HOME/.cache/nvim
 
-	mkdir -p "$HOME/.config/nvim"
-	cp -r "nvim/" "$HOME/.config/"
+	log mkdir -p "$HOME/.config/nvim"
+	log cp -r "nvim/" "$HOME/.config/"
 }
 
 
 # alacritty #
 alacritty() {
-	paru -S --noconfirm alacritty
-	[ -d $HOME/.config/alacritty/ ] && mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
-	mkdir -p "$HOME/.config/alacritty/"
-	cp -r "alacritty/" "$HOME/.config/"
+	log paru -S --noconfirm alacritty
+	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
+	log mkdir -p "$HOME/.config/alacritty/"
+	log cp -r "alacritty/" "$HOME/.config/"
 }
 
 
 # helix #
 helix() {
-	paru -S --noconfirm helix
-	[ -d $HOME/.config/helix/ ] && mv $HOME/.config/helix $HOME/.config/helix$datetime
-	mkdir -p "$HOME/.config/helix/"
-	cp -r "helix/" "$HOME/.config/"
+	log paru -S --noconfirm helix
+	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix$datetime
+	log mkdir -p "$HOME/.config/helix/"
+	log cp -r "helix/" "$HOME/.config/"
 }
 
 
 # python #
 python() {
-	doas pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
+	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
 }
 
 
 # nano #
 nano() {
-	doas pacman -S --noconfirm nano
-	[ -d $HOME/.config/nano/nanorc ] && mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
-	mkdir -p "$HOME/.config/nano/"
-	cp "nanorc" "$HOME/.config/nano/"
+	log sudo pacman -S --noconfirm nano
+	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
+	log mkdir -p "$HOME/.config/nano/"
+	log cp "nanorc" "$HOME/.config/nano/"
 }
 
 
 # hypr #
 hyprland() {
-	doas pacman -S --noconfirm hyprland dunst wl-clipboard rofi
-	[ -d $HOME/.config/hypr/] && mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
-	mkdir -p "$HOME/.config/hypr/"
-	cp -r "hypr/" "$HOME/.config/"
+	log sudo pacman -S --noconfirm hyprland dunst wl-clipboard rofi
+	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
+	log mkdir -p "$HOME/.config/hypr/"
+	log cp -r "hypr/" "$HOME/.config/"
 }
 
 
 # waybar #
 waybar() {
-	doas pacman -S --noconfirm waybar
-	[ -d $HOME/.config/waybar/] && mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
-	mkdir -p "$HOME/.config/waybar/"
-	cp -r "waybar/" "$HOME/.config/"
+	log sudo pacman -S --noconfirm waybar
+	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
+	log mkdir -p "$HOME/.config/waybar/"
+	log cp -r "waybar/" "$HOME/.config/"
 }
 
 
 # confings #
 configs() {
-	[ -f $HOME/.bashrc ] && mv $HOME/.bashrc $HOME/.bashrc_$datetime
-	cp "bashrc" "$HOME/.bashrc"
-	[ -f $HOME/.bash_profile ] && mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
-	cp "bash_profile" "$HOME/.bash_profile"
-	source "$HOME/.bashrc"
+	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime
+	log cp "bashrc" "$HOME/.bashrc"
+	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
+	log cp "bash_profile" "$HOME/.bash_profile"
+	log echo "source .bashrc or reopen the terminal"
+}
+
+
+log() {
+	if [[ "$dry_run" == true ]]; then
+		echo "[DRY] $*"
+	else
+		echo "[INFO] $*"
+		eval "$@"
+	fi
 }
 
 
 main() {
-	if [[ $# -eq 0 ]]; then
+	args=()
+	for arg in "$@"; do
+		if [[ "$arg" == "--dry" ]]; then
+			dry_run=true
+		else
+			args+=("$arg")
+		fi
+	done
+
+	if [[ ${#args[@]} -eq 0 ]]; then
 		fonts
 		nvim
 		alacritty
@@ -99,7 +120,7 @@ main() {
 		waybar
 		configs
 	else
-		for component in "$@"; do
+		for component in "${args[@]}"; do
 			if declare -f "$component" > /dev/null; then
 				"$component"
 			else
