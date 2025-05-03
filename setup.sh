@@ -48,7 +48,13 @@ helix() {
 
 # python #
 python() {
-	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
+	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry npm
+}
+
+
+# bash #
+bash() {
+	log sudo pacman -S --noconfirm bash-language-server
 }
 
 
@@ -85,7 +91,21 @@ configs() {
 	log cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "bash_profile" "$HOME/.bash_profile"
-	log echo "source .bashrc or reopen the terminal"
+	echo "[INFO] source .bashrc or reopen the terminal"
+}
+
+
+clean() {
+	echo "[INFO] Cleaning up backup directories created on $(date +%F)..."
+	find "$HOME/.config" -maxdepth 1 -type d -regex ".*/[^/]+_[0-9]\{6\}_[0-9]\{6\}" | while read -r dir; do
+		log rm -rv $dir
+	done
+	find $HOME/.local/share/nvim_* -maxdepth 0 -type d -regex ".*/nvim_[0-9]\{\6}_[0-9]\{6\}" | while read -r dir; do
+		log rm -rv $dir
+	done
+	find $HOME -maxdepth 1 -type f -regex ".*/\.bash(rx|_profile)_[0-9]\{\6}_[0-9]\{6\}" | while read -f file; do
+		log rm -rv $file
+	done
 }
 
 
@@ -115,6 +135,7 @@ main() {
 		alacritty
 		helix
 		python
+		bash
 		nano
 		hyprland
 		waybar
