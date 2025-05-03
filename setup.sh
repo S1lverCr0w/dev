@@ -9,13 +9,13 @@ datetime=$(date +%y%m%d_%H%M%S)
 
 # fonts #
 fonts() {
-	paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome
+	paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
 
 
 # nvim #
 nvim() {
-	paru -S nvim --noconfirm bash-language-server pyright
+	paru -S nvim --noconfirm bash-language-server pyright fzf
 
 	[ -d $HOME/.config/nvim/ ] && mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] && mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -52,6 +52,7 @@ python() {
 
 # nano #
 nano() {
+	doas pacman -S --noconfirm nano
 	[ -d $HOME/.config/nano/nanorc ] && mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
 	mkdir -p "$HOME/.config/nano/"
 	cp "nanorc" "$HOME/.config/nano/"
@@ -60,6 +61,7 @@ nano() {
 
 # hypr #
 hyprland() {
+	doas pacman -S --noconfirm hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/] && mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
 	mkdir -p "$HOME/.config/hypr/"
 	cp -r "hypr/" "$HOME/.config/"
@@ -68,6 +70,7 @@ hyprland() {
 
 # waybar #
 waybar() {
+	doas pacman -S --noconfirm waybar
 	[ -d $HOME/.config/waybar/] && mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	mkdir -p "$HOME/.config/waybar/"
 	cp -r "waybar/" "$HOME/.config/"
@@ -80,9 +83,6 @@ configs() {
 	cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] && mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	cp "bash_profile" "$HOME/.bash_profile"
-
-	journalctl --disk-usage #show how much storage logs take
-	doas journalctl --vacuum-time=7d #keep logs only for 7 days
 }
 
 
