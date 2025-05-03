@@ -6,7 +6,7 @@ set -euo pipefail
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 datetime=$(date +%y%m%d_%H%M%S)
 
-
+#
 # fonts #
 fonts() {
 	paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
@@ -46,7 +46,7 @@ helix() {
 
 # python #
 python() {
-	pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
+	doas pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
 }
 
 
@@ -83,6 +83,7 @@ configs() {
 	cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] && mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	cp "bash_profile" "$HOME/.bash_profile"
+	source "$HOME/.bashrc"
 }
 
 
