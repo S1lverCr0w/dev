@@ -11,13 +11,15 @@ datetime=$(date +%y%m%d_%H%M%S)
 #
 # fonts #
 fonts() {
-	log paru -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono ttf-material-symbols-variable-git otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
+	log paru -S --noconfirm ttf-material-symbols-variable-git
+	log sudo pacman -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono \
+		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
 
 
 # nvim #
 nvim() {
-	 log paru -S nvim --noconfirm bash-language-server pyright fzf npm
+	 log sudo pacman -S --noconfirm neovim ash-language-server pyright fzf npm
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -30,7 +32,7 @@ nvim() {
 
 # alacritty #
 alacritty() {
-	log paru -S --noconfirm alacritty
+	log sudo pacman -S --noconfirm alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
 	log cp -r "alacritty/" "$HOME/.config/"
@@ -39,7 +41,7 @@ alacritty() {
 
 # helix #
 helix() {
-	log paru -S --noconfirm helix
+	log sudo pacman -S --noconfirm helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
 	log cp -r "helix/" "$HOME/.config/"
@@ -49,12 +51,6 @@ helix() {
 # python #
 python() {
 	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
-}
-
-
-# bash #
-bash() {
-	log sudo pacman -S --noconfirm bash-language-server
 }
 
 
@@ -134,7 +130,6 @@ main() {
 		alacritty
 		helix
 		python
-		bash
 		nano
 		hyprland
 		waybar
