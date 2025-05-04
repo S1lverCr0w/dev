@@ -40,7 +40,7 @@ alacritty() {
 # helix #
 helix() {
 	log paru -S --noconfirm helix
-	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix$datetime
+	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
 	log cp -r "helix/" "$HOME/.config/"
 }
