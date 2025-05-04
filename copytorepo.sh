@@ -24,7 +24,7 @@ help() {
 	echo
 	echo "Examples:"
 	echo "  $(basename "$0")              Copy all configs to repo"
-	echo "  $(basename "$0") --dry nvim   Simulate copy of Neovim config to repo"
+	echo "  $(basename "$0") --dry nvim   Simulate copying of Neovim config to repo"
 }
 
 
