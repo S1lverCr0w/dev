@@ -3,6 +3,9 @@
 quick script to set up my dev environment using bash
 
 # usage
+```
+./setup.sh --help
+```
 to do a dry run on all the functions and display the commands to be ran in the terminal
 ```
 ./setup.sh --dry
