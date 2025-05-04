@@ -91,16 +91,16 @@ configs() {
 	log cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "bash_profile" "$HOME/.bash_profile"
-	log echo "[INFO] source .bashrc or reopen the terminal"
+	echo "[INFO] source .bashrc or reopen the terminal"
 }
 
 
 clean() {
 	echo "[INFO] Cleaning up backup directories creatd"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rv {} +
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rv {} +
+		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
