@@ -7,20 +7,20 @@ usr_dir="/home/enryu"
 
 
 help() {
-	echo "Usage: $(basename "$0") [OPTIONS] [COMMANDS]"
+	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
 	echo "  --dry         Simulate actions without executing"
 	echo "  --help        Show this help message"
 	echo
-	echo "Commands:"
+	echo "Components:"
 	echo "  clean         Delete cache, cargo, rustup, yarn, etc."
 	echo "  clean_logs    Keep only 7 days of journal logs"
 	echo
 	echo "Examples:"
-	echo "  $(basename "$0")             Run full cleanup"
-	echo "  $(basename "$0") clean       Run only the clean function"
-	echo "  $(basename "$0") --dry clean Simulate cleanup"
+	echo "  $(basename "$0")                 Run full cleanup"
+	echo "  $(basename "$0") clean           Run only the clean function"
+	echo "  $(basename "$0") --dry clean     Simulate cleanup"
 }
 
 
