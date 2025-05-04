@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
-dry_run=false
-
-
 set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 datetime=$(date +%y%m%d_%H%M%S)
+dry_run=false
 
-#
+
 # fonts #
 fonts() {
 	log paru -S --noconfirm ttf-material-symbols-variable-git
@@ -82,7 +80,7 @@ waybar() {
 
 
 # confings #
-configs() {
+config() {
 	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime
 	log cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
@@ -133,7 +131,7 @@ main() {
 		nano
 		hyprland
 		waybar
-		configs
+		config
 	else
 		for component in "${args[@]}"; do
 			if declare -f "$component" > /dev/null; then
@@ -145,6 +143,5 @@ main() {
 		done
 	fi
 }
-
 
 main "$@"
