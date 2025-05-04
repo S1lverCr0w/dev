@@ -9,15 +9,15 @@ dry_run=false
 
 # fonts #
 font() {
-	log paru -S --noconfirm ttf-material-symbols-variable-git
-	log sudo pacman -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono \
+	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
+	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
 
 
 # nvim #
 nvim() {
-	 log sudo pacman -S --noconfirm neovim ash-language-server pyright fzf npm
+	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -30,7 +30,7 @@ nvim() {
 
 # alacritty #
 alacritty() {
-	log sudo pacman -S --noconfirm alacritty
+	log sudo pacman -S --noconfirm --needed alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
 	log cp -r "alacritty/" "$HOME/.config/"
@@ -39,7 +39,7 @@ alacritty() {
 
 # helix #
 helix() {
-	log sudo pacman -S --noconfirm helix
+	log sudo pacman -S --noconfirm --needed helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
 	log cp -r "helix/" "$HOME/.config/"
@@ -48,13 +48,13 @@ helix() {
 
 # python #
 python() {
-	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
+	log sudo pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
 }
 
 
 # nano #
 nano() {
-	log sudo pacman -S --noconfirm nano
+	log sudo pacman -S --noconfirm --needed nano
 	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
 	log mkdir -p "$HOME/.config/nano/"
 	log cp "nanorc" "$HOME/.config/nano/"
@@ -63,7 +63,7 @@ nano() {
 
 # hypr #
 hyprland() {
-	log sudo pacman -S --noconfirm hyprland dunst wl-clipboard rofi
+	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
 	log mkdir -p "$HOME/.config/hypr/"
 	log cp -r "hypr/" "$HOME/.config/"
@@ -72,7 +72,7 @@ hyprland() {
 
 # waybar #
 waybar() {
-	log sudo pacman -S --noconfirm waybar
+	log sudo pacman -S --noconfirm --needed waybar
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
 	log cp -r "waybar/" "$HOME/.config/"
