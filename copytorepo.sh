@@ -6,6 +6,28 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dry_run=false
 
 
+help() {
+	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
+	echo
+	echo "Options:"
+	echo "  --dry         Simulate actions without executing"
+	echo "  --help        Show this help message"
+	echo
+	echo "Components:"
+	echo "  nvim          Copy Neovim config to repo"
+	echo "  alacritty     Copy Alacritty config to repo"
+	echo "  helix         Copy Helix config to repo"
+	echo "  nano          Copy Nano config to repo"
+	echo "  hyprland      Copy Hyprland config to repo"
+	echo "  waybar        Copy Waybar config to repo"
+	echo "  config        Copy .bashrc and .bash_profile to repo"
+	echo
+	echo "Examples:"
+	echo "  $(basename "$0")              Copy all configs to repo"
+	echo "  $(basename "$0") --dry nvim   Simulate copy of Neovim config to repo"
+}
+
+
 # nvim #
 nvim() {
 	log cp -r $HOME/.config/nvim/* nvim
@@ -63,11 +85,11 @@ log() {
 main() {
 	args=()
 	for arg in "$@"; do
-		if [[ "$arg" == "--dry" ]]; then
-			dry_run=true
-		else
-			args+=("$arg")
-		fi
+		case "$arg" in
+			--dry) dry_run=true ;;
+			--help) help; exit 0 ;;
+			*) args+=("$arg") ;;
+		esac
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
@@ -79,11 +101,11 @@ main() {
 		waybar
 		config
 	else
-		for component in "${args[@]}"; do
-			if declare -f "$component" > /dev/null; then
-				"$component"
+		for argument in "${args[@]}"; do
+			if declare -f "$argument" > /dev/null; then
+				"$argument"
 			else
-				echo "Unknown argument: $component"
+				echo "Unknown argument: $argument"
 				exit 1
 			fi
 		done

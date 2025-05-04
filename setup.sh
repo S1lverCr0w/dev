@@ -7,6 +7,31 @@ datetime=$(date +%y%m%d_%H%M%S)
 dry_run=false
 
 
+help() {
+	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
+	echo
+	echo "Options:"
+	echo "  --dry       Simulate actions without executing"
+	echo "  --help      Show this help message"
+	echo
+	echo "Components:"
+	echo "  font        Install and configure fonts"
+	echo "  nvim        Set up Neovim config"
+	echo "  alacritty   Set up Alacritty config"
+	echo "  helix       Set up Helix editor"
+	echo "  python      Install Python dev tools"
+	echo "  nano        Configure Nano"
+	echo "  hyprland    Set up Hyprland config"
+	echo "  waybar      Set up Waybar config"
+	echo "  config      Copy .bashrc and .bash_profile"
+	echo "  clean       Remove old backup configs"
+	echo
+	echo "Examples:"
+	echo "  $(basename "$0")                Run all setup steps"
+	echo "  $(basename "$0") --dry nvim     Dry-run Neovim setup"
+}
+
+
 # fonts #
 font() {
 	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
@@ -17,7 +42,7 @@ font() {
 
 # nvim #
 nvim() {
-	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel
+	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel ripgrep fd
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -115,11 +140,11 @@ log() {
 main() {
 	args=()
 	for arg in "$@"; do
-		if [[ "$arg" == "--dry" ]]; then
-			dry_run=true
-		else
-			args+=("$arg")
-		fi
+		case "$arg" in
+			--dry) dry_run=true ;;
+			--help) help; exit 0 ;;
+			*) args+=("$arg") ;;
+		esac
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
@@ -138,6 +163,7 @@ main() {
 				"$component"
 			else
 				echo "Unknown argument: $component"
+				echo "Use --help to see valid options."
 				exit 1
 			fi
 		done
