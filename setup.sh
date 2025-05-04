@@ -17,7 +17,7 @@ fonts() {
 
 # nvim #
 nvim() {
-	 log paru -S nvim --noconfirm bash-language-server pyright fzf
+	 log paru -S nvim --noconfirm bash-language-server pyright fzf npm
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -48,7 +48,7 @@ helix() {
 
 # python #
 python() {
-	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry npm
+	log sudo pacman -S --noconfirm pyside6-tools qt6-tools python-poetry
 }
 
 
@@ -91,7 +91,7 @@ configs() {
 	log cp "bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "bash_profile" "$HOME/.bash_profile"
-	log echo "source .bashrc or reopen the terminal"
+	log echo "[INFO] source .bashrc or reopen the terminal"
 }
 
 
@@ -105,7 +105,6 @@ clean() {
 		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
-
 }
 
 
