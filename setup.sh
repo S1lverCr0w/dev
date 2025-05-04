@@ -8,7 +8,7 @@ dry_run=false
 
 
 # fonts #
-fonts() {
+font() {
 	log paru -S --noconfirm ttf-material-symbols-variable-git
 	log sudo pacman -S --noconfirm ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
@@ -123,7 +123,7 @@ main() {
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
-		fonts
+		font
 		nvim
 		alacritty
 		helix
