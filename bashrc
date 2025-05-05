@@ -54,7 +54,7 @@ bind 'set completion-ignore-case on'
 
 # Root privileges:
 #alias doas='doas --'
-#alias sudo='doas'
+alias doas='sudo'
 
 alias nv='nvim'
 alias hx='helix'
