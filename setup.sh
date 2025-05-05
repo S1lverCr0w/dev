@@ -17,6 +17,7 @@ help() {
 	echo "Components:"
 	echo "  font        Install and configure fonts"
 	echo "  nvim        Set up Neovim config"
+	echo "  dev         Set up editors and some cmd tools"
 	echo "  alacritty   Set up Alacritty config"
 	echo "  helix       Set up Helix editor"
 	echo "  python      Install Python dev tools"
@@ -42,7 +43,8 @@ font() {
 
 # nvim #
 nvim() {
-	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel ripgrep fd
+	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel ripgrep fd \
+		 ed vi vim
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -50,6 +52,12 @@ nvim() {
 
 	log mkdir -p "$HOME/.config/nvim"
 	log cp -r "nvim/" "$HOME/.config/"
+}
+
+
+# dev #
+dev() {
+	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano
 }
 
 
@@ -150,6 +158,7 @@ main() {
 	if [[ ${#args[@]} -eq 0 ]]; then
 		font
 		nvim
+		dev
 		alacritty
 		helix
 		python
