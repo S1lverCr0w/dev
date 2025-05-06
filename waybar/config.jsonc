@@ -5,7 +5,9 @@
   "layer": "top",
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "keyboard-state",
     "pulseaudio",
@@ -19,8 +21,18 @@
     "custom/power"
   ],
   "hyprland/workspaces": {
-    "format": "{name}: {icon}",
+    "format": "{icon}",
+    "persistent-workspaces": {
+        "1": "А",
+        "2": "Б",
+        "3": "В",
+        "4": "Г"
+      },
     "format-icons": {
+        "1": "А",
+        "2": "Б",
+        "3": "В",
+        "4": "Г",
       "active": "",
       "default": ""
     }
