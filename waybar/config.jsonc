@@ -1,4 +1,7 @@
 {
+  "height": 30,
+  // "spacing": 0,
+  // "icon-size": 21,
   "layer": "top",
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
@@ -38,7 +41,8 @@
   "clock": {
     "timezone": "Europe/Dublin",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%d/%m/%Y - %H:%M:%S}"
+    "format": "{:%d/%m/%Y  %H:%M}",
+    // "rotate": 90
   },
   "network": {
     "format-wifi": "󰤢 {bandwidthDownBits}",

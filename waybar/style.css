@@ -1,7 +1,6 @@
 * {
   font-family: JetbrainsMono Nerd Font;
   font-size: 13px;
-  min-height: 0;
   padding-right: 2px;
   padding-left: 2px;
   padding-bottom: 0px;
@@ -9,13 +8,16 @@
 
 #waybar {
   background: transparent;
+  /* background: #282c34; */
+  /* border-bottom: 2px solid #61afef; */
   color: #c6d0f5;
   margin: 2px 2px;
+  /* min-height: 40px; */
 }
 
 #workspaces {
   border-radius: 5px;
-  margin: 5px;
+  margin: 5px 0px 5px 0px;
   background: #101010;
   margin-left: 1rem;
 }
@@ -86,7 +88,7 @@
 
 #pulseaudio {
   color: #ea999c;
-  border-radius: 5px 0px 0px 5%;
+  border-radius: 5px 0px 0px 5px;
   margin-left: 1rem;
 }
 
@@ -96,6 +98,7 @@
 }
 
 #custom-lock {
+  margin-left: 1rem;
   border-radius: 5px 0px 0px 5px;
   color: #babbf1;
 }
@@ -117,7 +120,7 @@
 }
 
 #keyboard-state {
-  border-radius: 5px 0px 0px 5%;
+  border-radius: 5px 5px 5px 5px;
   color: #babbf1;
   margin-left: 1rem;
 }
