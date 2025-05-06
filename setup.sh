@@ -105,7 +105,7 @@ hyprland() {
 
 # waybar #
 waybar() {
-	log sudo pacman -S --noconfirm --needed waybar
+	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
 	log cp -r "waybar/" "$HOME/.config/"
