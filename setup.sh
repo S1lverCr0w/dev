@@ -51,7 +51,7 @@ nvim() {
 	log rm -rf $HOME/.cache/nvim
 
 	log mkdir -p "$HOME/.config/nvim"
-	log cp -r "nvim/" "$HOME/.config/"
+	log cp -r "config/nvim/" "$HOME/.config/"
 }
 
 
@@ -66,7 +66,7 @@ alacritty() {
 	log sudo pacman -S --noconfirm --needed alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
-	log cp -r "alacritty/" "$HOME/.config/"
+	log cp -r "config/alacritty/" "$HOME/.config/"
 }
 
 
@@ -75,7 +75,7 @@ helix() {
 	log sudo pacman -S --noconfirm --needed helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
-	log cp -r "helix/" "$HOME/.config/"
+	log cp -r "config/helix/" "$HOME/.config/"
 }
 
 
@@ -90,7 +90,7 @@ nano() {
 	log sudo pacman -S --noconfirm --needed nano
 	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
 	log mkdir -p "$HOME/.config/nano/"
-	log cp "nanorc" "$HOME/.config/nano/"
+	log cp "config/nanorc" "$HOME/.config/nano/"
 }
 
 
@@ -99,7 +99,7 @@ hyprland() {
 	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
 	log mkdir -p "$HOME/.config/hypr/"
-	log cp -r "hypr/" "$HOME/.config/"
+	log cp -r "config/hypr/" "$HOME/.config/"
 }
 
 
@@ -109,16 +109,16 @@ waybar() {
 	log paru -S --noconfirm --needed wlogout
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
-	log cp -r "waybar/" "$HOME/.config/"
+	log cp -r "config/waybar/" "$HOME/.config/"
 }
 
 
 # confings #
 config() {
 	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime
-	log cp "bashrc" "$HOME/.bashrc"
+	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
-	log cp "bash_profile" "$HOME/.bash_profile"
+	log cp "config/bash_profile" "$HOME/.bash_profile"
 	echo "[INFO] source .bashrc or reopen the terminal"
 }
 
