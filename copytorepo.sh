@@ -31,49 +31,51 @@ help() {
 
 # nvim #
 nvim() {
-	log cp -r $HOME/.config/nvim/* nvim
+	log cp -r $HOME/.config/nvim/* config/nvim
 }
 
 
 # alacritty #
 alacritty() {
-	log cp -r $HOME/.config/alacritty/* alacritty
+	log cp -r $HOME/.config/alacritty/* config/alacritty
 }
 
 
 # helix #
 helix() {
-	log cp -r $HOME/.config/helix/* helix
+	log cp -r $HOME/.config/helix/* config/helix
 }
 
 
 # nano #
 nano() {
 	echo "$script_dir"
-	log cp $HOME/.config/nano/* $script_dir
+	log cp $HOME/.config/nano/* $config/script_dir
 }
 
 
 # hyprland #
 hyprland() {
-	log cp -r $HOME/.config/hypr/* hypr
+	log cp -r $HOME/.config/hypr/* config/hypr
 }
 
 
 # waybar #
 waybar() {
-	log cp -r $HOME/.config/waybar/* waybar
+	log cp -r $HOME/.config/waybar/* config/waybar
 }
+
 
 # eww #
 eww() {
-	log cp -r $HOME/.config/eww/* eww
+	log cp -r $HOME/.config/eww/* config/eww
 }
+
 
 # configs #
 config() {
-	log cp -r $HOME/.bashrc bashrc
-	log cp -r $HOME/.bash_profile bash_profile
+	log cp -r $HOME/.bashrc config/bashrc
+	log cp -r $HOME/.bash_profile config/bash_profile
 }
 
 
