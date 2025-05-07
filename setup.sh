@@ -106,6 +106,7 @@ hyprland() {
 # waybar #
 waybar() {
 	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
+	log paru -S --noconfirm --needed wlogout
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
 	log cp -r "waybar/" "$HOME/.config/"
@@ -123,7 +124,7 @@ config() {
 
 
 clean() {
-	echo "[INFO] Cleaning up backup directories creatd"
+	echo "[INFO] Cleaning up backup directories created"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
