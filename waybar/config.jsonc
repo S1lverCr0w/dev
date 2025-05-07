@@ -4,12 +4,14 @@
   // "icon-size": 21,
   "layer": "top",
   "position": "top",
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": [
+    "keyboard-state",
+    "hyprland/workspaces"
+  ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
-    "keyboard-state",
     "pulseaudio",
     "backlight",
     "battery",

@@ -34,7 +34,8 @@
 }
 
 #workspaces button:hover {
-  color: #85c1dc;
+  color: #babbf1;
+  background: #101010;
   border-radius: 5px;
 }
 
@@ -90,6 +91,7 @@
   color: #ea999c;
   border-radius: 5px 0px 0px 5px;
   margin-left: 1rem;
+  min-width: 48px;
 }
 
 #custom-music {
