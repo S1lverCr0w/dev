@@ -20,6 +20,7 @@ help() {
 	echo "  nano          Copy Nano config to repo"
 	echo "  hyprland      Copy Hyprland config to repo"
 	echo "  waybar        Copy Waybar config to repo"
+	echo "  eww           Copy Eww config to repo"
 	echo "  config        Copy .bashrc and .bash_profile to repo"
 	echo
 	echo "Examples:"
@@ -64,6 +65,10 @@ waybar() {
 	log cp -r $HOME/.config/waybar/* waybar
 }
 
+# eww #
+eww() {
+	log cp -r $HOME/.config/eww/* eww
+}
 
 # configs #
 config() {
