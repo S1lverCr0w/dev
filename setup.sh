@@ -23,6 +23,7 @@ help() {
 	echo "  python      Install Python dev tools"
 	echo "  nano        Configure Nano"
 	echo "  hyprland    Set up Hyprland config"
+	echo "  fabric      Set up Fabric config"
 	echo "  waybar      Set up Waybar config"
 	echo "  config      Copy .bashrc and .bash_profile"
 	echo "  clean       Remove old backup configs"
@@ -103,6 +104,20 @@ hyprland() {
 }
 
 
+# fabric #
+fabric() {
+	log sudo pacman -S --noconfirm --needed python gtk3 cairo gtk-layer-shell libgirepository \
+		gobject-introspection gobject-introspection-runtime python python-pip python-gobject \
+		python-cairo python-loguru pkgconf
+	[ -d $HOME/.config/fabric/ ] &&  log mv $HOME/.config/fabric $HOME/.config/fabric_$datetime
+	log mkdir -p "$HOME/main/software/fabric"
+	log cd "$HOME/main/software/fabric"
+	log python -m venv venv
+	log source venv/bin/activate
+	log pip install git+https://github.com/Fabric-Development/fabric.git
+}
+
+
 # waybar #
 waybar() {
 	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
@@ -166,6 +181,7 @@ main() {
 		nano
 		hyprland
 		waybar
+		fabric
 		config
 	else
 		for component in "${args[@]}"; do

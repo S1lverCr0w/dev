@@ -19,6 +19,7 @@ help() {
 	echo "  helix         Copy Helix config to repo"
 	echo "  nano          Copy Nano config to repo"
 	echo "  hyprland      Copy Hyprland config to repo"
+	echo "  fabric        Copy Fabric config to repo"
 	echo "  waybar        Copy Waybar config to repo"
 	echo "  eww           Copy Eww config to repo"
 	echo "  config        Copy .bashrc and .bash_profile to repo"
@@ -57,6 +58,13 @@ nano() {
 # hyprland #
 hyprland() {
 	log cp -r $HOME/.config/hypr/* config/hypr
+}
+
+
+# fabric #
+fabric() {
+	log cp -r $HOME/.config/fabric/* config/fabric
+	log rm -rf config/fabric/__pycache__
 }
 
 
@@ -105,6 +113,7 @@ main() {
 		helix
 		nano
 		hyprland
+		fabric
 		waybar
 		config
 	else
