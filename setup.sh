@@ -110,12 +110,13 @@ fabric() {
 		gobject-introspection gobject-introspection-runtime python python-pip python-gobject \
 		python-cairo python-loguru pkgconf
 	[ -d $HOME/.config/fabric/ ] &&  log mv $HOME/.config/fabric $HOME/.config/fabric_$datetime
-	log mkdir -p "$HOME/main/software/fabric"
-	log cd "$HOME/main/software/fabric"
+	# log mkdir -p "$HOME/main/software/fabric"
+	# log cd "$HOME/main/software/fabric"
 	# log python -m venv venv
 	# log source venv/bin/activate
 	# log pip install git+https://github.com/Fabric-Development/fabric.git
 	# log pip install psutil
+	log cp -r "config/fabric/" "$HOME/.config/"
 }
 
 
