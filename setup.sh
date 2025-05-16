@@ -115,6 +115,7 @@ fabric() {
 	log python -m venv venv
 	log source venv/bin/activate
 	log pip install git+https://github.com/Fabric-Development/fabric.git
+	log pip install psutil
 }
 
 
