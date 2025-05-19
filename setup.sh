@@ -58,7 +58,7 @@ nvim() {
 
 # dev #
 dev() {
-	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano
+	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano zig
 }
 
 
