@@ -4,6 +4,8 @@
 #██   ██ ██   ██      ██ ██   ██ ██   ██ ██
 #██████  ██   ██ ███████ ██   ██ ██   ██  ██████
 
+export EDITOR=nvim
+
 #allows to cd into directory by typing the name
 shopt -s autocd
 # Enable history appending instead of overwriting.  #139609
@@ -54,7 +56,7 @@ bind 'set completion-ignore-case on'
 
 # Root privileges:
 #alias doas='doas --'
-alias doas='sudo'
+#alias doas='sudo'
 
 alias nv='nvim'
 alias hx='helix'
