@@ -137,7 +137,7 @@ waybar() {
 }
 
 
-# confings ##
+# confings #
 config() {
 	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime
 	log cp "config/bashrc" "$HOME/.bashrc"
