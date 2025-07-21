@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-brew install nvim alacritty
-# xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
-
-brew install fzf npm 
-
-
-
-
-#!/usr/bin/env bash
-
 set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -46,14 +36,13 @@ help() {
 
 # mac #
 mac() {
-	brew install nvim alacritty
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install nvim firefox alacritty
 	# xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
-
-	brew install fzf npm 
 }
 
 
-# fonts #
+# fonts ##
 font() {
 	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
 	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
@@ -63,25 +52,24 @@ font() {
 
 # nvim #
 nvim() {
-	 log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel ripgrep fd \
-		 ed vi gvim
+	 log brew install neovim fzf npm ripgrep fd ed
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
 	log rm -rf $HOME/.cache/nvim
 
 	log mkdir -p "$HOME/.config/nvim"
-	log cp -r "config/nvim/" "$HOME/.config/"
+	log cp -r "config/nvim" "$HOME/.config/"
 }
 
 
-# dev #
+# dev ##
 dev() {
 	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano zig
 }
 
 
-# alacritty #
+# alacritty ##
 alacritty() {
 	log sudo pacman -S --noconfirm --needed alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
@@ -90,7 +78,7 @@ alacritty() {
 }
 
 
-# helix #
+# helix ##
 helix() {
 	log sudo pacman -S --noconfirm --needed helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
@@ -99,13 +87,13 @@ helix() {
 }
 
 
-# python #
+# python ##
 python() {
 	log sudo pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
 }
 
 
-# nano #
+# nano ##
 nano() {
 	log sudo pacman -S --noconfirm --needed nano
 	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
@@ -114,7 +102,7 @@ nano() {
 }
 
 
-# hypr #
+# hypr ##
 hyprland() {
 	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
@@ -123,7 +111,7 @@ hyprland() {
 }
 
 
-# fabric #
+# fabric ##
 fabric() {
 	log sudo pacman -S --noconfirm --needed python gtk3 cairo gtk-layer-shell libgirepository \
 		gobject-introspection gobject-introspection-runtime python python-pip python-gobject \
@@ -139,7 +127,7 @@ fabric() {
 }
 
 
-# waybar #
+# waybar ##
 waybar() {
 	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
 	log paru -S --noconfirm --needed wlogout
@@ -149,7 +137,7 @@ waybar() {
 }
 
 
-# confings #
+# confings ##
 config() {
 	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime
 	log cp "config/bashrc" "$HOME/.bashrc"
@@ -159,6 +147,7 @@ config() {
 }
 
 
+# clean ##
 clean() {
 	echo "[INFO] Cleaning up backup directories created"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
