@@ -84,6 +84,8 @@ eww() {
 config() {
 	log cp -r $HOME/.bashrc config/bashrc
 	log cp -r $HOME/.bash_profile config/bash_profile
+	log cp -r $HOME/.zshrc config/zshrc
+	log cp -r $HOME/.zprofile config/zprofile
 }
 
 

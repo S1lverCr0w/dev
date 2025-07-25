@@ -37,14 +37,15 @@ help() {
 # mac #
 mac() {
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install nvim firefox alacritty
+	brew install nvim firefox alacritty bash
 	# xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
 }
 
 
 # fonts ##
 font() {
-	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
+	log brew install font-jebrains-mono 
+	ttf-material-symbols-variable-git
 	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
@@ -69,12 +70,12 @@ dev() {
 }
 
 
-# alacritty ##
+# alacritty #
 alacritty() {
-	log sudo pacman -S --noconfirm --needed alacritty
+	log brew install alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
-	log cp -r "config/alacritty/" "$HOME/.config/"
+	log gcp -r "config/alacritty/" "$HOME/.config/"
 }
 
 
@@ -144,6 +145,7 @@ config() {
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
 	echo "[INFO] source .bashrc or reopen the terminal"
+	log brew install coreutils
 }
 
 

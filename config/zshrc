@@ -1,0 +1,47 @@
+#██████   █████  ███████ ██   ██ ██████   ██████
+#██   ██ ██   ██ ██      ██   ██ ██   ██ ██
+#██████  ███████ ███████ ███████ ██████  ██
+#██   ██ ██   ██      ██ ██   ██ ██   ██ ██
+#██████  ██   ██ ███████ ██   ██ ██   ██  ██████
+
+export EDITOR=nvim
+
+# HISTSIZE= HISTFILESIZE= # Infinite history
+# HISTSIZE=0
+# SAVEHIST=0
+# HISTFILE=~/.zsh_history # specify the file
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+bindkey "\e[1;2A" history-search-backward
+bindkey "\e[1;2B" history-search-forward
+
+############################################################
+# Enryu:
+############################################################
+
+### Aliases: ###
+
+# Root privileges:
+#alias doas='doas --'
+#alias doas='sudo'
+
+alias nv='nvim'
+alias hx='helix'
+
+# Misc:
+# alias ls='ls -G -h -F --group-directories-first'
+alias ls='gls --color=auto -h --group-directories-first'
+alias ll='ls -l'
+alias la='ls -la'
+alias ..='cd ..'
+alias c='clear'
+
+## Temp?? for my app
+# alias pl='/home/enryu/Main/git/pixelLauncher/python/main.py'
+# alias ok='/home/enryu/Main/git/clipboardShare/python/main.py'
+
+# virtualization shtuff
+#export LIBVIRT_DEFAULT_URI='qemu:///system'
+
