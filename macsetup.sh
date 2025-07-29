@@ -64,9 +64,10 @@ nvim() {
 }
 
 
-# dev ##
+# dev #
 dev() {
-	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano zig
+	 # log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano zig
+	 log brew install fzf tldr man-db ed neovim zig
 }
 
 
@@ -79,12 +80,12 @@ alacritty() {
 }
 
 
-# helix ##
+# helix #
 helix() {
-	log sudo pacman -S --noconfirm --needed helix
+	log brew install helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
-	log cp -r "config/helix/" "$HOME/.config/"
+	log cp -r "config/helix" "$HOME/.config/"
 }
 
 
