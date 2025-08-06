@@ -67,7 +67,7 @@ alacritty() {
 	log sudo pacman -S --noconfirm --needed alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
-	log cp -r "config/alacritty/" "$HOME/.config/"
+	log cp -r "config/alacritty" "$HOME/.config/"
 }
 
 
