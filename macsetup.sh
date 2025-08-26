@@ -38,7 +38,7 @@ help() {
 mac() {
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install nvim firefox alacritty bash
-	brew install zeal ## offline programming documentation gui app
+	brew install dash ## mac app  zeal ## windows/linux app ## offline programming documentation gui app
 	# xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
 }
 
