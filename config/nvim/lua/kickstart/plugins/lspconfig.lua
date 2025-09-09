@@ -224,7 +224,7 @@ return {
 				gopls = {},
 				pyright = {},
 				rust_analyzer = {},
-				asm_lsp = {},
+				-- asm_lsp = {},
 				bashls = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
