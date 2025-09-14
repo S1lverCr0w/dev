@@ -4,14 +4,17 @@ set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 datetime=$(date +%y%m%d_%H%M%S)
-dry_run=false
+dry_run=true
+info="\033[31m[INFO]\033[0m"
+dry_msg="\033[33m[DRY]\033[0m "
 
 
 help() {
 	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
-	echo "  --dry       Simulate actions without executing"
+	# echo "  --dry       Simulate actions without executing"
+	echo "  --run       Execute actions without simulating"
 	echo "  --help      Show this help message"
 	echo
 	echo "Components:"
@@ -37,7 +40,7 @@ help() {
 # mac #
 mac() {
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install nvim firefox alacritty bash
+	brew install nvim firefox alacritty bash coreutils
 	brew install dash ## mac app  zeal ## windows/linux app ## offline programming documentation gui app
 	# xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
 }
@@ -90,6 +93,19 @@ helix() {
 }
 
 
+# zed #
+zed() {
+	 log brew brew install zed
+
+	[ -d $HOME/.config/zed/ ] &&  log mv $HOME/.config/zed $HOME/.config/zed_$datetime
+	[ -d $HOME/.local/share/zed/ ] &&  log mv $HOME/.local/share/zed $HOME/.local/share/zed_$datetime
+	log rm -rf $HOME/.cache/zed
+
+	log mkdir -p "$HOME/.config/zed"
+	log cp -r "config/zed" "$HOME/.config/"
+}
+
+
 # python ##
 python() {
 	log sudo pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
@@ -121,12 +137,18 @@ clean() {
 	echo "[INFO] Cleaning up backup directories created"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
+	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec echo -e "$info {}" \;
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
+
+	# gnu test
+	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 }
 
 
@@ -144,7 +166,7 @@ main() {
 	args=()
 	for arg in "$@"; do
 		case "$arg" in
-			--dry) dry_run=true ;;
+			--run) dry_run=false ;;
 			--help) help; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
@@ -156,6 +178,7 @@ main() {
 		dev
 		alacritty
 		helix
+		zed
 		python
 		nano
 		hyprland
