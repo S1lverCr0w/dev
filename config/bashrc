@@ -5,7 +5,6 @@
 #██████  ██   ██ ███████ ██   ██ ██   ██  ██████
 
 export EDITOR=nvim
-export PROMPT_COMMAND='history -a'
 
 #allows to cd into directory by typing the name
 shopt -s autocd

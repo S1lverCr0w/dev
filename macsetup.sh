@@ -105,41 +105,6 @@ nano() {
 }
 
 
-# hypr ##
-hyprland() {
-	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
-	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
-	log mkdir -p "$HOME/.config/hypr/"
-	log cp -r "config/hypr/" "$HOME/.config/"
-}
-
-
-# fabric ##
-fabric() {
-	log sudo pacman -S --noconfirm --needed python gtk3 cairo gtk-layer-shell libgirepository \
-		gobject-introspection gobject-introspection-runtime python python-pip python-gobject \
-		python-cairo python-loguru pkgconf
-	[ -d $HOME/.config/fabric/ ] &&  log mv $HOME/.config/fabric $HOME/.config/fabric_$datetime
-	# log mkdir -p "$HOME/main/software/fabric"
-	# log cd "$HOME/main/software/fabric"
-	# log python -m venv venv
-	# log source venv/bin/activate
-	# log pip install git+https://github.com/Fabric-Development/fabric.git
-	# log pip install psutil
-	log cp -r "config/fabric/" "$HOME/.config/"
-}
-
-
-# waybar ##
-waybar() {
-	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
-	log paru -S --noconfirm --needed wlogout
-	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
-	log mkdir -p "$HOME/.config/waybar/"
-	log cp -r "config/waybar/" "$HOME/.config/"
-}
-
-
 # confings #
 config() {
 	[ -f $HOME/.bashrc ] &&  log mv $HOME/.bashrc $HOME/.bashrc_$datetime

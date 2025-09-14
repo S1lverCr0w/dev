@@ -14,8 +14,8 @@ export EDITOR=nvim
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-bindkey "\e[1;2A" history-search-backward
-bindkey "\e[1;2B" history-search-forward
+bindkey "\e[1;2A" history-beginning-search-backward
+bindkey "\e[1;2B" history-beginning-search-forward
 
 ############################################################
 # Enryu:
