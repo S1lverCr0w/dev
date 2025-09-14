@@ -154,13 +154,14 @@ config() {
 	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
-	echo -e "$info source .bashrc or reopen the terminal"
+	printf "$info source .bashrc or reopen the terminal\n"
 }
 
 
 clean() {
+	# testing echo -e for mac/bsd compatibilty
 	echo -e "$info Cleaning up backup directories created"
-	echo -e "$info These will be permanently deleted"
+	printf "$info These will be permanently deleted\n"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
