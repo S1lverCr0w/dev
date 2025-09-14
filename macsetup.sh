@@ -57,7 +57,7 @@ font() {
 
 # nvim #
 nvim() {
-	 log brew install neovim fzf npm ripgrep fd ed
+	 # log brew install neovim fzf npm ripgrep fd ed
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
@@ -135,20 +135,26 @@ config() {
 # clean ##
 clean() {
 	echo "[INFO] Cleaning up backup directories created"
-	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
-	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec echo -e "$info {}" \;
-	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
-	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
-		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
+	log find "$HOME/.config" -maxdepth 1 -type d \
+		-name "*_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME/.config" -maxdepth 1 -type d \
+		-name "*_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+	log find "$HOME/.local/share" -maxdepth 1 -type d \
+		-name "*nvim_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME/.local/share" -maxdepth 1 -type d \
+		-name "*nvim_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+
+
+	log find $HOME -maxdepth 1 -type d \
+		-name ".*/\.bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME" -maxdepth 1 -type d \
+		-name ".*/\.bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
 
 	# gnu test
-	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
+	# find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
+	# 	-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 }
 
 
