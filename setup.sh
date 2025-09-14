@@ -24,6 +24,7 @@ help() {
 	echo "  dev         Set up editors and some cmd tools"
 	echo "  alacritty   Set up Alacritty config"
 	echo "  helix       Set up Helix editor"
+	echo "  zed         Set up Zed editor"
 	echo "  python      Install Python dev tools"
 	echo "  nano        Configure Nano"
 	echo "  hyprland    Set up Hyprland config"
@@ -153,13 +154,13 @@ config() {
 	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
-	printf "$info source .bashrc or reopen the terminal\n"
+	echo -e "$info source .bashrc or reopen the terminal"
 }
 
 
 clean() {
-	printf "$info Cleaning up backup directories created\n"
-	printf "$info These will be permanently deleted\n"
+	echo -e "$info Cleaning up backup directories created"
+	echo -e "$info These will be permanently deleted"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
