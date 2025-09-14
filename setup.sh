@@ -4,14 +4,18 @@ set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 datetime=$(date +%y%m%d_%H%M%S)
-dry_run=false
+dry_run=true
+#colour the informative messages
+info="\033[31m[INFO]\033[0m"
+dry_msg="\033[33m[DRY]\033[0m "
 
 
 help() {
 	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
-	echo "  --dry       Simulate actions without executing"
+	# echo "  --dry       Simulate actions without executing"
+	echo "  --run       Execute actions without simulating"
 	echo "  --help      Show this help message"
 	echo
 	echo "Components:"
@@ -52,7 +56,7 @@ nvim() {
 	log rm -rf $HOME/.cache/nvim
 
 	log mkdir -p "$HOME/.config/nvim"
-	log cp -r "config/nvim/" "$HOME/.config/"
+	log cp -r "config/nvim" "$HOME/.config/"
 }
 
 
@@ -76,7 +80,20 @@ helix() {
 	log sudo pacman -S --noconfirm --needed helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
-	log cp -r "config/helix/" "$HOME/.config/"
+	log cp -r "config/helix" "$HOME/.config/"
+}
+
+
+# zed #
+zed() {
+	 log sudo pacman -S --noconfirm --needed zed amdvlk
+
+	[ -d $HOME/.config/zed/ ] &&  log mv $HOME/.config/zed $HOME/.config/zed_$datetime
+	[ -d $HOME/.local/share/zed/ ] &&  log mv $HOME/.local/share/zed $HOME/.local/share/zed_$datetime
+	log rm -rf $HOME/.cache/zed
+
+	log mkdir -p "$HOME/.config/zed"
+	log cp -r "config/zed" "$HOME/.config/"
 }
 
 
@@ -100,7 +117,7 @@ hyprland() {
 	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
 	log mkdir -p "$HOME/.config/hypr/"
-	log cp -r "config/hypr/" "$HOME/.config/"
+	log cp -r "config/hypr" "$HOME/.config/"
 }
 
 
@@ -116,7 +133,7 @@ fabric() {
 	# log source venv/bin/activate
 	# log pip install git+https://github.com/Fabric-Development/fabric.git
 	# log pip install psutil
-	log cp -r "config/fabric/" "$HOME/.config/"
+	log cp -r "config/fabric" "$HOME/.config/"
 }
 
 
@@ -126,7 +143,7 @@ waybar() {
 	log paru -S --noconfirm --needed wlogout
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
-	log cp -r "config/waybar/" "$HOME/.config/"
+	log cp -r "config/waybar" "$HOME/.config/"
 }
 
 
@@ -136,28 +153,37 @@ config() {
 	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
-	echo "[INFO] source .bashrc or reopen the terminal"
+	printf "$info source .bashrc or reopen the terminal\n"
 }
 
 
 clean() {
-	echo "[INFO] Cleaning up backup directories created"
+	printf "$info Cleaning up backup directories created\n"
+	printf "$info These will be permanently deleted\n"
 	log find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
+	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
+	find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
+	find $HOME -maxdepth 1 -type f -regextype posix-extended \
+		-regex ".*/\.bashrc_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
 		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
+	find $HOME -maxdepth 1 -type f -regextype posix-extended \
+		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 }
 
 
 log() {
 	if [[ "$dry_run" == true ]]; then
-		echo "[DRY] $*"
+		printf "$dry_msg $*\n"
 	else
-		echo "[INFO] $*"
+		printf "$info $*\n"
 		eval "$@"
 	fi
 }
@@ -167,7 +193,7 @@ main() {
 	args=()
 	for arg in "$@"; do
 		case "$arg" in
-			--dry) dry_run=true ;;
+			--run) dry_run=false ;;
 			--help) help; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
@@ -179,6 +205,7 @@ main() {
 		dev
 		alacritty
 		helix
+		zed
 		python
 		nano
 		hyprland
