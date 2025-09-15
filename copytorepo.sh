@@ -3,7 +3,7 @@
 set -euo pipefail
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-dry_run=false
+dry_run=true
 
 
 help() {
@@ -33,6 +33,12 @@ help() {
 # nvim #
 nvim() {
 	log cp -r $HOME/.config/nvim/* config/nvim
+}
+
+
+# vim #
+vim() {
+	log cp -r $HOME/.vim/* config/vim
 }
 
 
@@ -90,7 +96,7 @@ config() {
 
 
 log() {
-	if [[ "$dry_run" == true ]]; then
+	if [[ "$dry_run" == false ]]; then
 		echo "[DRY] $*"
 	else
 		echo "[INFO] $*"
@@ -103,7 +109,7 @@ main() {
 	args=()
 	for arg in "$@"; do
 		case "$arg" in
-			--dry) dry_run=true ;;
+			--run) dry_run=false ;;
 			--help) help; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
@@ -111,6 +117,7 @@ main() {
 
 	if [[ ${#args[@]} -eq 0 ]]; then
 		nvim
+		vim
 		alacritty
 		helix
 		nano

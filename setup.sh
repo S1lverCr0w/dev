@@ -61,6 +61,16 @@ nvim() {
 }
 
 
+# vim #
+vim() {
+	log doas pacman -S -=-noconfirm --needed vim
+	[ -d "$HOME/.vim" ] &&  log mv $HOME/.vim $HOME/.vim_$datetime
+	log rm -rf $HOME/.vim
+	log mkdir -p "$HOME/.vim"
+	log cp -r "config/vim" "$HOME/"
+}
+
+
 # dev #
 dev() {
 	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db texinfo wikiman ed vi neovim gvim nano zig
@@ -166,6 +176,10 @@ clean() {
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
+	log find "$HOME/.vim" -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
+	find "$HOME/.vim" -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
 	find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
@@ -204,6 +218,7 @@ main() {
 	if [[ ${#args[@]} -eq 0 ]]; then
 		font
 		nvim
+		vim
 		dev
 		alacritty
 		helix
