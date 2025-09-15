@@ -13,11 +13,12 @@ help() {
 	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
-	echo "  --dry         Simulate actions without executing"
+	echo "  --run       Execute actions without simulating"
 	echo "  --help        Show this help message"
 	echo
 	echo "Components:"
 	echo "  nvim          Copy Neovim config to repo"
+	echo "  vim           Copy vim config to repo"
 	echo "  alacritty     Copy Alacritty config to repo"
 	echo "  helix         Copy Helix config to repo"
 	echo "  nano          Copy Nano config to repo"
@@ -28,8 +29,10 @@ help() {
 	echo "  config        Copy .bashrc and .bash_profile to repo"
 	echo
 	echo "Examples:"
-	echo "  $(basename "$0")              Copy all configs to repo"
-	echo "  $(basename "$0") --dry nvim   Simulate copying of Neovim config to repo"
+	echo "  $(basename "$0")              Simulate copying all configs to repo"
+	echo "  $(basename "$0") --run        Copy all configs to repo"
+	echo "  $(basename "$0") nvim         Simulate copying of Neovim config to repo"
+	echo "  $(basename "$0") --run nvim   Copy Neovim config to repo"
 }
 
 

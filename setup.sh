@@ -21,6 +21,7 @@ help() {
 	echo "Components:"
 	echo "  font        Install and configure fonts"
 	echo "  nvim        Set up Neovim config"
+	echo "  vim         Set up Vim config"
 	echo "  dev         Set up editors and some cmd tools"
 	echo "  alacritty   Set up Alacritty config"
 	echo "  helix       Set up Helix editor"
@@ -34,7 +35,9 @@ help() {
 	echo "  clean       Remove old backup configs"
 	echo
 	echo "Examples:"
-	echo "  $(basename "$0")                Run all setup steps"
+	echo "  $(basename "$0")                Dry-run all setup steps"
+	echo "  $(basename "$0") --run          Run all setup steps"
+	echo "  $(basename "$0") nvim           Run the Neovim setup"
 	echo "  $(basename "$0") --dry nvim     Dry-run Neovim setup"
 }
 
