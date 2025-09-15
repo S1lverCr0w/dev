@@ -53,11 +53,29 @@ set autoindent              " indent a new line the same amount as the line just
 set wildmode=longest,list   " get bash-like tab completions
 set cc=80                  " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
-syntax on                   " syntax highlighting
-set clipboard=unnamedplus   " using system clipboard
-"filetype plugin on
+" set clipboard=unnamedplus   " using system clipboard
+" filetype plugin on
 " set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
+" "stop auto comment a new line
+autocm FileType * set formatoptions-=cro
+
+
+
+
+" # colourscheme #
+" https://github.com/joshdick/onedark.vim
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+syntax on                   " syntax highlighting
+colorscheme onedark
