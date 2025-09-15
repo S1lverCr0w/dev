@@ -4,6 +4,9 @@ set -euo pipefail
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dry_run=true
+#colour the informative messages
+info="\033[31m[INFO]\033[0m"
+dry_msg="\033[33m[DRY]\033[0m "
 
 
 help() {
@@ -96,10 +99,10 @@ config() {
 
 
 log() {
-	if [[ "$dry_run" == false ]]; then
-		echo "[DRY] $*"
+	if [[ "$dry_run" == true ]]; then
+		printf "$dry_msg $*\n"
 	else
-		echo "[INFO] $*"
+		printf "$info $*\n"
 		eval "$@"
 	fi
 }

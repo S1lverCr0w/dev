@@ -63,11 +63,11 @@ nvim() {
 
 # vim #
 vim() {
-	log doas pacman -S -=-noconfirm --needed vim
+	log doas pacman -S --noconfirm --needed gvim
 	[ -d "$HOME/.vim" ] &&  log mv $HOME/.vim $HOME/.vim_$datetime
 	log rm -rf $HOME/.vim
 	log mkdir -p "$HOME/.vim"
-	log cp -r "config/vim" "$HOME/"
+	log cp -r "config/vim/*" "$HOME/.vim"
 }
 
 
@@ -176,10 +176,12 @@ clean() {
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
-	log find "$HOME/.vim" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -exec rm -rfv {} +
-	find "$HOME/.vim" -maxdepth 1 -type d -regextype posix-extended \
-		-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
+
+	log find $HOME/ -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/.vim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
+	find $HOME/ -maxdepth 1 -type d -regextype posix-extended \
+		-regex ".*/.vim_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
+
 	log find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
 		-regex ".*/nvim_[0-9]{6}_[0-9]{6}" -exec rm -rf {} +
 	find $HOME/.local/share -maxdepth 1 -type d -regextype posix-extended \
@@ -235,8 +237,7 @@ main() {
 				"$component"
 			else
 				echo "Unknown argument: $component"
-				echo "Use --help to see valid options."
-				exit 1
+				echo "Use --help to see valid options." exit 1
 			fi
 		done
 	fi
