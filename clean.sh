@@ -2,15 +2,18 @@
 
 set -euo pipefail
 
-dry_run=false
+dry_run=true
 usr_dir="/home/enryu"
+#colour the informative messages
+info="\033[31m[INFO]\033[0m"
+dry_msg="\033[33m[DRY]\033[0m "
 
 
 help() {
 	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
-	echo "  --dry         Simulate actions without executing"
+	echo "  --run         Execute actions"
 	echo "  --help        Show this help message"
 	echo
 	echo "Components:"
@@ -18,9 +21,10 @@ help() {
 	echo "  clean_logs    Keep only 7 days of journal logs"
 	echo
 	echo "Examples:"
-	echo "  $(basename "$0")                 Run full cleanup"
-	echo "  $(basename "$0") clean           Run only the clean function"
-	echo "  $(basename "$0") --dry clean     Simulate cleanup"
+	echo "  $(basename "$0")                 Dry-run full cleanup"
+	echo "  $(basename "$0") clean           Dry-run only the clean function"
+	echo "  $(basename "$0") clean           Simulate cleanup"
+	echo "  $(basename "$0") --run clean     Run only the clean function"
 }
 
 
@@ -44,6 +48,11 @@ clean() {
 	log rm -rf "$usr_dir/.local/share/yarn/"*
 
 	log journalctl --disk-usage #show how much storage logs take
+
+	# mozilla stuff
+	[ -d $HOME/.mozilla/firefox/*.default-release/storage/default/* ] && \
+		log du -sh "$usr_dir/.mozilla/firefox/*.default-release/storage/default/"
+	log rm -rf "$usr_dir/.mozilla/firefox/*.default-release/storage/default/*"
 }
 
 
@@ -56,9 +65,9 @@ clean_logs() {
 
 log() {
 	if [[ "$dry_run" == true ]]; then
-		echo "[DRY] $*"
+		printf "$dry_msg $*\n"
 	else
-		echo "[INFO] $*"
+		printf "$info $*\n"
 		eval "$@"
 	fi
 }
@@ -68,7 +77,7 @@ main() {
 	args=()
 	for arg in "$@"; do
 		case "$arg" in
-			--dry) dry_run=true ;;
+			--run) dry_run=false ;;
 			--help) help; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
