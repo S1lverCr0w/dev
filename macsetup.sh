@@ -106,18 +106,10 @@ zed() {
 }
 
 
-# python ##
+# python #
 python() {
-	log sudo pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
-}
-
-
-# nano ##
-nano() {
-	log sudo pacman -S --noconfirm --needed nano
-	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
-	log mkdir -p "$HOME/.config/nano/"
-	log cp "config/nanorc" "$HOME/.config/nano/"
+	log brew install python
+	# pyside6-tools qt6-tools python-poetry
 }
 
 
@@ -132,7 +124,7 @@ config() {
 }
 
 
-# clean ##
+# clean #
 clean() {
 	echo "[INFO] Cleaning up backup directories created"
 	log find "$HOME/.config" -maxdepth 1 -type d \
@@ -145,16 +137,14 @@ clean() {
 		-name "*nvim_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 
 
-	log find $HOME -maxdepth 1 -type d \
-		-name ".*/\.bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
-	find "$HOME" -maxdepth 1 -type d \
-		-name ".*/\.bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
-	log find $HOME -maxdepth 1 -type f -regextype posix-extended \
-		-regex ".*/\.bash_profile_[0-9]{6}_[0-9]{6}" -exec rm -v {} +
-
-	# gnu test
-	# find "$HOME/.config" -maxdepth 1 -type d -regextype posix-extended \
-	# 	-regex ".*/[^/]+_[0-9]{6}_[0-9]{6}" -printf "$info %p\n"
+	log find $HOME -maxdepth 1 -type f \
+		-name ".bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME" -maxdepth 1 -type f \
+		-name ".bashrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+	log find $HOME -maxdepth 1 -type f \
+		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME" -maxdepth 1 -type f \
+		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 }
 
 
@@ -187,9 +177,6 @@ main() {
 		zed
 		python
 		nano
-		hyprland
-		waybar
-		fabric
 		config
 	else
 		for component in "${args[@]}"; do
