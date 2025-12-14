@@ -13,7 +13,7 @@ help() {
 	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
 	echo
 	echo "Options:"
-	echo "  --run       Execute actions without simulating"
+	echo "  --run         Execute actions without simulating"
 	echo "  --help        Show this help message"
 	echo
 	echo "Components:"
@@ -21,6 +21,7 @@ help() {
 	echo "  vim           Copy vim config to repo"
 	echo "  alacritty     Copy Alacritty config to repo"
 	echo "  helix         Copy Helix config to repo"
+	echo "  zed           Copy Zed config to repo"
 	echo "  nano          Copy Nano config to repo"
 	echo "  hyprland      Copy Hyprland config to repo"
 	echo "  fabric        Copy Fabric config to repo"
@@ -57,6 +58,12 @@ alacritty() {
 # helix #
 helix() {
 	log cp -r $HOME/.config/helix/* config/helix
+}
+
+
+# zed #
+zed() {
+	log cp -r $HOME/.config/zed/* config/zed
 }
 
 
@@ -126,6 +133,7 @@ main() {
 		vim
 		alacritty
 		helix
+		zed
 		nano
 		hyprland
 		fabric
