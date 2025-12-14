@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "restore_on_startup": "last_session",
+  "prettier": {
+    "allowed": false
+  },
   "disable_ai": true,
   "format_on_save": "off",
   "inlay_hints": {
