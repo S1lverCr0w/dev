@@ -21,6 +21,7 @@ help() {
 	echo "Components:"
 	echo "  font        Install and configure fonts"
 	echo "  nvim        Set up Neovim config"
+	echo "  nvim_clear  Delete the installed plugins for a fresh start (can help with some plugins not working and other errors)"
 	echo "  vim         Set up Vim config"
 	echo "  dev         Set up editors and some cmd tools"
 	echo "  alacritty   Set up Alacritty config"
@@ -56,11 +57,18 @@ nvim() {
 		 ed vi gvim
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
-	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	# [ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	nvim_clear
 	log rm -rf $HOME/.cache/nvim
 
 	log mkdir -p "$HOME/.config/nvim"
 	log cp -r "config/nvim" "$HOME/.config/"
+}
+
+
+# nvim_clear #
+nvim_clear() {
+	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
 }
 
 
@@ -223,6 +231,7 @@ main() {
 	if [[ ${#args[@]} -eq 0 ]]; then
 		font
 		nvim
+		nvim_clear
 		vim
 		dev
 		alacritty
