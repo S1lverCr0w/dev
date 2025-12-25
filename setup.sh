@@ -84,7 +84,9 @@ vim() {
 
 # dev #
 dev() {
-	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db texinfo wikiman ed vi neovim gvim nano zig gcc-fortran
+	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep ed vi neovim gvim nano
+	 log sudo pacman -S --noconfirm --needed tldr man-db texinfo wikiman
+	 log sudo pacman -S --noconfirm --needed zig gcc-fortran valgrind gdb
 }
 
 
