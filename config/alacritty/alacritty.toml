@@ -2,16 +2,23 @@
 import = ["~/.config/alacritty/one_dark.toml"]
 
 [font]
-size = 10.0
+size = 11.0
 
 [font.normal]
 family = "JetBrains Mono"
 style = "ExtraLight"
 
-# [keyboard]
-# bindings = [
-#	{ key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
-# ]
+# mac #
+[keyboard]
+bindings = [
+#	{key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+	# skip word left
+	{key = "Left", mods = "Command", chars = "\u001bb"},
+	# skip word right
+	{key = "Right", mods = "Command", chars = "\u001bf"},
+	# delete word
+	{key = "Back", mods = "Command", chars = "\u0017"},
+]
 
 # [[hints.enabled]]
 # regex = "[^ ]+\\.rs:\\d+:\\d+"
