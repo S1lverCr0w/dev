@@ -55,6 +55,7 @@ font() {
 nvim() {
 	log sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel ripgrep fd \
 		 ed vi gvim
+	log pacman -S --noconfirm --needed jdk-openjdk
 	log paru -S --noconfirm --needed jdtls
 
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
