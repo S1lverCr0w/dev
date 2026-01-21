@@ -25,6 +25,11 @@ return {
 
 				-- max_height = 20,
 				-- auto_show = false, -- hide menu if ghost text is enabled
+
+				-- -- to offset the autocomplete popup modify the source code of blink.cmp
+				-- -- .local/share/nvim/lazy/blink.cmp/lua/blink/cmp/completion/windows/menu.lua
+				-- -- change: local alignment_start_col = menu.renderer:get_alignment_start_col()
+				-- -- to: local alignment_start_col = menu.renderer:get_alignment_start_col() - 4 -- or any value needed
 			},
 			documentation = {
 				auto_show = false,
