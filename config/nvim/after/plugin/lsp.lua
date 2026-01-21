@@ -118,8 +118,8 @@ vim.lsp.config('lua_ls', {
   }
 })
 
-vim.lsp.enable('dartls')
-vim.lsp.enable('gdscript')
+-- vim.lsp.enable('dartls')
+-- vim.lsp.enable('gdscript')
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'java',
