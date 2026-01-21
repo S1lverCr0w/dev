@@ -1,28 +1,28 @@
-vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client == nil or client.name == "copilot" then
-            return
-        end
-
-        -- Disable semantic highlights
-        client.server_capabilities.semanticTokensProvider = nil
-
-        local opts = { buffer = event.buf }
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gi', builtin.lsp_implementations, opts)
-        vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
-        vim.keymap.set('n', 'gs', builtin.lsp_workspace_symbols, opts)
-        vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'x' }, '=', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "g]", '<cmd>lua vim.diagnostic.jump({count=1, float=true})<cr>', opts)
-        vim.keymap.set("n", "g[", '<cmd>lua vim.diagnostic.jump({count=-1, float=true})<cr>', opts)
-    end,
-})
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--     callback = function(event)
+--         local client = vim.lsp.get_client_by_id(event.data.client_id)
+--         if client == nil or client.name == "copilot" then
+--             return
+--         end
+--
+--         -- Disable semantic highlights
+--         client.server_capabilities.semanticTokensProvider = nil
+--
+--         local opts = { buffer = event.buf }
+--         local builtin = require('telescope.builtin')
+--         vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+--         vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
+--         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+--         vim.keymap.set('n', 'gi', builtin.lsp_implementations, opts)
+--         vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
+--         vim.keymap.set('n', 'gs', builtin.lsp_workspace_symbols, opts)
+--         vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+--         vim.keymap.set({ 'n', 'x' }, '=', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+--         vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
+--         vim.keymap.set("n", "g]", '<cmd>lua vim.diagnostic.jump({count=1, float=true})<cr>', opts)
+--         vim.keymap.set("n", "g[", '<cmd>lua vim.diagnostic.jump({count=-1, float=true})<cr>', opts)
+--     end,
+-- })
 
 -- is this a dupicate ???? --
 -- vim.lsp.config('lua_ls', {
@@ -122,6 +122,8 @@ vim.lsp.config('lua_ls', {
 -- vim.lsp.enable('dartls')
 -- vim.lsp.enable('gdscript')
 vim.lsp.enable('clangd')
+-- clangd alternative (dealbreaker: no warning when the headers aren't used)
+-- vim.lsp.enable('ccls')
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'java',
@@ -330,10 +332,10 @@ local servers = {
 --
 -- -- You can add other tools here that you want Mason to install
 -- -- for you, so that they are available from within Neovim.
--- local ensure_installed = vim.tbl_keys(servers or {})
--- vim.list_extend(ensure_installed, {
---     "stylua", -- Used to format Lua code
--- })
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+    "stylua", -- Used to format Lua code
+})
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 require("mason-lspconfig").setup({

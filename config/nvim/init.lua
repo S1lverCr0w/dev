@@ -1,8 +1,13 @@
 require("config.lazy")
+require("keymaps")
+
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.opt.termguicolors = true
 -- sync clipboard with system clipboard
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 
 --help files open in full window and are listed in buffer elements
 vim.api.nvim_create_autocmd("FileType", {
@@ -39,11 +44,20 @@ vim.o.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.inccommand = "split"
+
+vim.opt.confirm = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.o.list = true
+vim.opt.list = true
 vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 
 -- persist cursor line after closing
@@ -65,28 +79,29 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
-
---unhighlight
-vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
-
---terminal
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
-
---saving&quitting
-vim.keymap.set("n", "<C-s>", ":w<CR>")
-vim.keymap.set("n", "<F5>", ":wa<CR>")
-vim.keymap.set("n", "<BS>", ":confirm bdelete<CR>")
-vim.keymap.set("n", "<C-BS>", ":qa<CR>")
-
---telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>f', builtin.find_files, {})
-vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+-- --keymap
+-- vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
+-- vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
+-- vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
+-- vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
+--
+-- --unhighlight
+-- vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
+--
+-- --terminal
+-- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+--
+-- --saving&quitting
+-- vim.keymap.set("n", "<C-s>", ":w<CR>")
+-- vim.keymap.set("n", "<F5>", ":wa<CR>")
+-- vim.keymap.set("n", "<BS>", ":confirm bdelete<CR>")
+-- vim.keymap.set("n", "<C-BS>", ":qa<CR>")
+--
+-- --telescope
+-- local builtin = require('telescope.builtin')
+-- vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+-- vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
 local treesitter = require('treesitter.treesitter_setup')
 treesitter.setup()
