@@ -18,8 +18,9 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- navigate dirs when a file wasn't specified
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
@@ -58,7 +59,8 @@ vim.opt.confirm = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
+-- indent line aka ibl doe override the tab character
+vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" } 
 
 -- persist cursor line after closing
 vim.api.nvim_create_autocmd({"BufReadPost"}, {
@@ -97,7 +99,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.keymap.set("n", "<BS>", ":confirm bdelete<CR>")
 -- vim.keymap.set("n", "<C-BS>", ":qa<CR>")
 --
--- --telescope
 -- local builtin = require('telescope.builtin')
 -- vim.keymap.set('n', '<leader>f', builtin.find_files, {})
 -- vim.keymap.set('n', '<leader>g', builtin.live_grep, {})

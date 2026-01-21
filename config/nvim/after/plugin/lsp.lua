@@ -119,11 +119,10 @@ vim.lsp.config('lua_ls', {
   }
 })
 
--- vim.lsp.enable('dartls')
--- vim.lsp.enable('gdscript')
 vim.lsp.enable('clangd')
 -- clangd alternative (dealbreaker: no warning when the headers aren't used)
 -- vim.lsp.enable('ccls')
+-- vim.lsp.enable('asm_lsp')
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'java',
