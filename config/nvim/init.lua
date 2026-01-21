@@ -1,34 +1,116 @@
---[[
+require("config.lazy")
 
-=====================================================================
-========            Enryu / S1lverCr0w                       ========
-=====================================================================
-=====================================================================
+vim.opt.termguicolors = true
+vim.opt.clipboard = 'unnamedplus'
 
---]]
+--help files open in full window and are listed in buffer elements
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "help",
+    callback = function()
+        vim.cmd("only")
+        vim.bo.buflisted = true
+    end
+})
 
--- forked from: https://github.com/dam9000/kickstart-modular.nvim/tree/master
--- https://github.com/nvim-lua/kickstart.nvim
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.signcolumn = 'yes'
+vim.o.foldenable = false
+vim.o.wrap = false
+vim.wo.relativenumber = true
+vim.opt.number = true
 
--- [[ Setting options ]]
-require("options")
+-- save undo history
+vim.opt.undofile = true
 
--- [[ Basic Keymaps ]]
-require("keymaps")
+-- persist cursor line after closing
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+    pattern = {"*"},
+    callback = function()
+        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+            vim.api.nvim_exec("normal! g'\"", false)
+        end
+    end,
+})
 
--- [[ Install `lazy.nvim` plugin manager ]]
-require("lazy-bootstrap")
+-- stop nvim from adding comments on new lines after a comment
+-- <C-u> removes comment in insert mode
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
+})
 
--- [[ Configure and install plugins ]]
-require("lazy-plugins")
+--KEYMAPS
+vim.keymap.set("n", "<Tab>", function()
+    require("oil").open()
+end)
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
+
+--unhighlight
+vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
+
+--terminal
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
+--saving&quitting
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("n", "<F5>", ":wa<CR>")
+vim.keymap.set("n", "<BS>", ":confirm bdelete<CR>")
+vim.keymap.set("n", "<C-BS>", ":qa<CR>")
+
+--copilot
+--this is necessary to still allow default tab behavior when copilot suggestion is not visible
+vim.keymap.set("i", "<Tab>", function()
+        local copilot = require("copilot.suggestion")
+        if copilot.is_visible() then
+            copilot.accept_line()
+        else
+            return "\t"
+        end
+    end,
+    { expr = true }
+)
+vim.keymap.set({ "n", "v" }, "`", ":CopilotChat<CR>")
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "copilot-chat",
+    callback = function()
+        vim.cmd("wincmd r")
+    end,
+})
+
+--telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+
+--harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-j>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-k>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-l>", function() harpoon:list():select(4) end)
+
+vim.keymap.set("n", "<C-,>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-.>", function() harpoon:list():next() end)
+
+local treesitter = require('treesitter.treesitter_setup')
+treesitter.setup()
