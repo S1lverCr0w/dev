@@ -11,11 +11,11 @@ vim.opt.termguicolors = true
 
 --help files open in full window and are listed in buffer elements
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "help",
-    callback = function()
-        vim.cmd("only")
-        vim.bo.buflisted = true
-    end
+	pattern = "help",
+	callback = function()
+		vim.cmd("only")
+		vim.bo.buflisted = true
+	end,
 })
 
 -- navigate dirs when a file wasn't specified
@@ -28,7 +28,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 vim.o.foldenable = false
 vim.o.wrap = false
 vim.wo.relativenumber = true
@@ -60,16 +60,16 @@ vim.opt.confirm = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 -- indent line aka ibl doe override the tab character
-vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" } 
+vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 
 -- persist cursor line after closing
-vim.api.nvim_create_autocmd({"BufReadPost"}, {
-    pattern = {"*"},
-    callback = function()
-        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.api.nvim_exec("normal! g'\"", false)
-        end
-    end,
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	pattern = { "*" },
+	callback = function()
+		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+			vim.api.nvim_exec("normal! g'\"", false)
+		end
+	end,
 })
 
 -- stop nvim from adding comments on new lines after a comment
@@ -104,5 +104,5 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 -- vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
-local treesitter = require('treesitter.treesitter_setup')
+local treesitter = require("treesitter.treesitter_setup")
 treesitter.setup()

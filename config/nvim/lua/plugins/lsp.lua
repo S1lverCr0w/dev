@@ -1,6 +1,5 @@
 return {
 	{
-		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -16,42 +15,30 @@ return {
 			-- Allows extra capabilities provided by blink.cmp
 			"saghen/blink.cmp",
 		},
-    },
-    {
-        "mason-org/mason.nvim",
-        opts = {
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_pending = "➜",
-                    package_uninstalled = "✗"
-                }
-            }
-        }
-    },
-    {
-        'williamboman/mason-lspconfig.nvim',
-        opts = {
-            automatic_enable = {
-                exclude = {
-                    --needs external plugin
-                    'jdtls'
-                }
-            }
-        }
-    },
-    -- { 'Decodetalkers/csharpls-extended-lsp.nvim' },
-    { 'mfussenegger/nvim-jdtls' },
-    -- {
-    --     'MeanderingProgrammer/render-markdown.nvim',
-    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    --     opts = {
-    --         file_types = { 'markdown'},
-    --     },
-    -- },
-
-
-    -- -- -- -- kickstart -- -- -- --
+	},
+	{
+		"mason-org/mason.nvim",
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			automatic_enable = {
+				exclude = {
+					--needs external plugin
+					"jdtls",
+				},
+			},
+		},
+	},
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
@@ -64,4 +51,6 @@ return {
 			},
 		},
 	},
+	-- important for java
+	{ "mfussenegger/nvim-jdtls" },
 }
