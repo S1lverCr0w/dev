@@ -55,6 +55,8 @@ font() {
 nvim() {
 	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server pyright fzf npm base-devel ripgrep fd \
 		 ed vi gvim
+    # # run archlinux-java status to see if jdk path is set
+    # # run archlinux-java fix to set path etc
 	log sudo pacman -S --noconfirm --needed jdk-openjdk
 	log paru -S --noconfirm --needed jdtls
 
