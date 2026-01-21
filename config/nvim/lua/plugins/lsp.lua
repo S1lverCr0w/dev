@@ -7,6 +7,7 @@ return {
 			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
+			require("java.jdtls_lsp"),
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
@@ -29,16 +30,18 @@ return {
 		},
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			automatic_enable = {
-				exclude = {
-					--needs external plugin
-					"jdtls",
-				},
-			},
-		},
+		-- "williamboman/mason-lspconfig.nvim",
+		-- opts = {
+		-- 	automatic_enable = {
+		-- 		exclude = {
+		-- 			--needs external plugin
+		-- 			"jdtls",
+		-- 		},
+		-- 	},
+		-- },
 	},
+	-- -- important external plugin for java (eclipse ide)
+	-- { "mfussenegger/nvim-jdtls" },
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
@@ -51,6 +54,4 @@ return {
 			},
 		},
 	},
-	-- important for java
-	{ "mfussenegger/nvim-jdtls" },
 }

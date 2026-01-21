@@ -124,12 +124,13 @@ vim.lsp.enable("clangd")
 -- vim.lsp.enable('ccls')
 -- vim.lsp.enable('asm_lsp')
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "java",
-	callback = function(args)
-		require("jdtls.jdtls_setup").setup()
-	end,
-})
+-- -- java jdtls cmd
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "java",
+-- 	callback = function(args)
+-- 		require("jdtls.jdtls_setup").setup()
+-- 	end,
+-- })
 
 -- -- -- -- kickstart lsp -- -- -- --
 -- config = function()
