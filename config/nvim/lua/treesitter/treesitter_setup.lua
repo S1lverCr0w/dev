@@ -1,6 +1,5 @@
 local M = {}
 
-
 function M:setup()
     local treesitter = require('nvim-treesitter')
     require 'nvim-treesitter.install'.compilers = {
