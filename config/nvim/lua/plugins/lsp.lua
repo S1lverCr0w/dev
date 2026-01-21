@@ -41,7 +41,7 @@ return {
         }
     },
     -- { 'Decodetalkers/csharpls-extended-lsp.nvim' },
-    -- { 'mfussenegger/nvim-jdtls' },
+    { 'mfussenegger/nvim-jdtls' },
     -- {
     --     'MeanderingProgrammer/render-markdown.nvim',
     --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },

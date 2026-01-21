@@ -7,7 +7,7 @@ function M:setup()
 
     -- See `:help vim.lsp.start` for an overview of the supported `config` options.
     local config = {
-        name = "jdtls",
+        name = 'jdtls',
 
 
         -- `cmd` defines the executable to launch eclipse.jdt.ls.
