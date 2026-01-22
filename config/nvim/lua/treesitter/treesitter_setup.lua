@@ -12,7 +12,7 @@ function M:setup()
 	treesitter.install({
 		"c",
 		"zig",
-		-- "assembly",
+		"assembly",
 		"fortran",
 		"java",
 		"python",
@@ -44,7 +44,7 @@ function M:setup()
 		pattern = {
 			"c",
 			"zig",
-			-- "assembly",
+			"assembly",
 			"fortran",
 			"java",
 			"python",

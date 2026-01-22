@@ -25,7 +25,6 @@ return {
 			menu = {
 				border = "single",
 				scrollbar = true,
-
 				-- max_height = 20,
 				-- auto_show = false, -- hide menu if ghost text is enabled
 
