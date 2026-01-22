@@ -33,10 +33,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Jump to the type of the word under your cursor. the definition of its *type*, not where it was *defined*.
 		map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-		-- Document highlight on cursor hold (firts command)
+		-- Document highlight on cursor hold (the firts autcommand)
 		-- When you move your cursor, the highlights will be cleared (the second autocommand).
+		local function client_supports_method(client, method, bufnr)
+			return client:supports_method(method, bufnr)
+		end
+
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if client then
+		if
+			client
+			and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
+		then
 			local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
@@ -57,13 +64,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 					vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
 				end,
 			})
-		end
 
-		-- The following code creates a keymap to toggle inlay hints in your code, if the language server you are using supports them This may be unwanted, since they displace some of your code
-		if client then
-			map("<leader>th", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-			end, "[T]oggle Inlay [H]ints")
+			-- The following code creates a keymap to toggle inlay hints in your code, if the language server you are using supports them This may be unwanted, since they displace some of your code
+			if client then
+				map("<leader>th", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+				end, "[T]oggle Inlay [H]ints")
+			end
 		end
 	end,
 })
