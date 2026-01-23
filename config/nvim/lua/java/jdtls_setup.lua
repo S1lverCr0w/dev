@@ -2,6 +2,7 @@ local M = {}
 
 function M:setup()
 	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+    -- concatenate path
 	local workspace_dir = vim.fn.stdpath("data")
 		.. package.config:sub(1, 1)
 		.. "jdtls-workspace"
