@@ -6,7 +6,6 @@ require("java.jdtls_cmd") -- java jdtls eclipese lsp
 -- vim.g.mapleader = " "
 -- vim.g.maplocalleader = " "
 
-vim.opt.termguicolors = true
 -- sync clipboard with system clipboard
 -- vim.opt.clipboard = 'unnamedplus'
 
@@ -23,38 +22,43 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.autoindent = true
-vim.o.smartindent = true
-vim.o.signcolumn = "yes"
-vim.o.foldenable = false
-vim.o.wrap = false
+-- base
+vim.opt.number = true
 vim.wo.relativenumber = true
-vim.o.number = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.foldenable = false
+vim.opt.scrolloff = 10                          -- Minimal number of screen lines to keep above and below the cursor.
 
--- save undo history
-vim.o.undofile = true
+-- visual
+-- vim.opt.colorcolumn = "yes"
+vim.opt.colorcolumn = "82"
+vim.opt.signcolumn = "yes"                      -- Keep signcolumn on by default
+vim.opt.showmatch = true                        -- highlight matching brackets
+vim.opt.termguicolors = true
+vim.opt.cursorline = false                      -- Show which line your cursor is on
 
--- Keep signcolumn on by default
-vim.o.signcolumn = "yes"
-
--- Show which line your cursor is on
-vim.o.cursorline = false
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
-vim.opt.updatetime = 250
+-- file
+vim.opt.undofile = true                         -- save undo history
+vim.opt.autoread = true                         -- auto reload file if changed from outside
+vim.opt.autowrite = false                       -- auto save
+vim.opt.updatetime = 250                        -- faster completion
 vim.opt.timeoutlen = 300
+vim.opt.confirm = true
 
+vim.opt.signcolumn = "yes"
+
+
+-- search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.inccommand = "split"
-
-vim.opt.confirm = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
