@@ -2,7 +2,7 @@ return {
 	"saghen/blink.cmp",
 	dependencies = {
 		-- add extra snippets
-		"rafamadriz/friendly-snippets",
+		-- "rafamadriz/friendly-snippets",
 	},
 	version = "1.*",
 	opts = {
@@ -23,9 +23,9 @@ return {
 			-- 	enabled = true,
 			-- },
 			menu = {
-				border = "single",
+				-- border = "single",
 				scrollbar = true,
-				-- max_height = 20,
+				max_height = 6,
 				-- auto_show = false, -- hide menu if ghost text is enabled
 
 				-- -- to offset the autocomplete popup modify the source code of blink.cmp

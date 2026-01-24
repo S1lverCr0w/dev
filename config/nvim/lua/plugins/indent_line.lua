@@ -8,6 +8,8 @@ return {
 			indent = {
 				char = "│",
 			},
+			-- disable the scope underline and scope highlight
+			scope = { enabled = false },
 		},
 	},
 }
