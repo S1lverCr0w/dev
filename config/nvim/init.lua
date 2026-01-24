@@ -39,7 +39,7 @@ vim.opt.scrolloff = 10                          -- Minimal number of screen line
 -- vim.opt.colorcolumn = "yes"
 vim.opt.colorcolumn = "82"
 vim.opt.signcolumn = "yes"                      -- Keep signcolumn on by default
-vim.opt.showmatch = true                        -- highlight matching brackets
+-- vim.opt.showmatch = false -- makes auto indetn very slow when on    -- highlight matching brackets
 vim.opt.termguicolors = true
 vim.opt.cursorline = false                      -- Show which line your cursor is on
 
