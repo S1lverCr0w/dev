@@ -11,7 +11,17 @@ return {
 		},
 	},
 	-- important external plugin for java (eclipse ide)
-	{ "mfussenegger/nvim-jdtls" },
+	{
+		"mfussenegger/nvim-jdtls",
+		config = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "java",
+				callback = function()
+					require("java.jdtls_setup").setup() -- old way for multi file setup
+				end,
+			})
+		end,
+	},
 }
 
 --[[
