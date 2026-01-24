@@ -1,4 +1,4 @@
--- NOTE: add this file to init.lua
+-- NOTE: add this line to init.lua
 -- require("java.jdtls_cmd")
 
 vim.api.nvim_create_autocmd("FileType", {

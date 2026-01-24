@@ -1,6 +1,6 @@
 require("config.lazy")
 require("keymaps")
-require("java.jdtls_cmd") -- java jdtls eclipese lsp
+-- require("java.jdtls_cmd") -- java jdtls eclipese lsp
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 -- vim.g.mapleader = " "
