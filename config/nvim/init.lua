@@ -28,12 +28,19 @@ vim.wo.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+-- vim.opt.expandtab = true                     -- tab character will not show if this is on
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.foldenable = false
 vim.opt.scrolloff = 10                          -- Minimal number of screen lines to keep above and below the cursor.
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+-- indent line aka ibl doe override the tab character
+vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 
 -- visual
 -- vim.opt.colorcolumn = "yes"
@@ -53,19 +60,11 @@ vim.opt.confirm = true
 
 vim.opt.signcolumn = "yes"
 
-
 -- search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.inccommand = "split"
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
--- indent line aka ibl doe override the tab character
-vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 
 -- persist cursor line after closing
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
