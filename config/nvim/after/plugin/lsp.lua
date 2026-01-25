@@ -104,17 +104,17 @@ vim.diagnostic.config({
 	},
 })
 
-vim.lsp.config('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                disable = {
-                    "undefined-global",
-                    "undefined-field"
-                }
-            },
-        }
-    }
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				disable = {
+					"undefined-global",
+					"undefined-field",
+				},
+			},
+		},
+	},
 })
 
 -- add capabilities of blink.cmp to vim lsp
