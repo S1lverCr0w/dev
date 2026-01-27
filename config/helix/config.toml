@@ -33,3 +33,6 @@ display-messages = false
 
 [editor.statusline]
 left = ["mode", "spinner", "version-control", "file-name"]
+
+[keys.normal]
+# C-s = [":sh touch helloworld.sh", ":w"] # testing
