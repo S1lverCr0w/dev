@@ -37,6 +37,11 @@ function M:setup()
 			"gitignore",
 			-- "typescript",
 			-- "yaml",
+			-- added from kickstart
+			"vim",
+			"vimdoc",
+			"luadoc",
+			"diff",
 		},
 
 	treesitter.install({
