@@ -9,7 +9,7 @@ function M:setup()
 		"cl",
 	}
 
-	treesitter.install({
+	local langs = {
 		"c",
 		"zig",
 		"assembly",
@@ -31,45 +31,21 @@ function M:setup()
 		-- "json",
 		-- "go",
 		"markdown",
-		"markdown_inline",
 		-- "csv",
 		-- "diff",
 		-- "dockerfile",
 		-- "gitignore",
 		-- "typescript",
 		-- "yaml",
+	}
+
+	treesitter.install({
+		langs,
+		"markdown_inline",
 	})
 
 	vim.api.nvim_create_autocmd("FileType", {
-		pattern = {
-			"c",
-			"zig",
-			"assembly",
-			"fortran",
-			"java",
-			"python",
-			"bash",
-			-- "cpp",
-			-- "c_sharp",
-			-- "javascript",
-			-- "html",
-			-- "css",
-			-- "kotlin",
-			-- "cmake",
-			"make",
-			-- "php",
-			"lua",
-			-- "rust",
-			-- "json",
-			-- "go",
-			"markdown",
-			-- "csv",
-			-- "diff",
-			-- "dockerfile",
-			"gitignore",
-			-- "typescript",
-			-- "yaml",
-		},
+		pattern = langs,
 		callback = function()
 			vim.treesitter.start()
 		end,

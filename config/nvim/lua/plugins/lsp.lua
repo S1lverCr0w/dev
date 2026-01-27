@@ -7,8 +7,8 @@ return {
 			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
-            require("java.jdtls_lsp"),
-            -- require("java.jdtls_config").mason_lsp_config,
+			-- java jdtls full setup
+			-- require("java.jdtls_lsp"),
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
