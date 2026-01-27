@@ -29,9 +29,9 @@ help() {
 	echo "  zed         Set up Zed editor"
 	echo "  python      Install Python dev tools"
 	echo "  nano        Configure Nano"
-	echo "  hyprland    Set up Hyprland config"
-	echo "  fabric      Set up Fabric config"
-	echo "  waybar      Set up Waybar config"
+	echo "  hyprland    Set up Hyprland config OUTDATED"
+	echo "  fabric      Set up Fabric config OUTDATED"
+	echo "  waybar      Set up Waybar config OUTDATED"
 	echo "  config      Copy .bashrc and .bash_profile"
 	echo "  clean       Remove old backup configs"
 	echo

@@ -1,8 +1,9 @@
-## Neovim dev env
+## Dot File Manager
 
 quick script to set up my dev environment using bash
 
-# usage
+### usage
+for help run
 ```
 ./setup.sh --help
 ```
@@ -10,9 +11,11 @@ to do a dry run on all the functions and display the commands to be ran in the t
 ```
 ./setup.sh
 ```
+copy directory/directories to repo
 ```
-./copytorepo.sh
+./copytorepo.sh nvim --run
 ```
+delete cache and other trivial files taking space
 ```
 ./clean.sh clean
 ```
