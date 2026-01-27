@@ -5,6 +5,7 @@
 #██████  ██   ██ ███████ ██   ██ ██   ██  ██████
 
 export EDITOR=nvim
+export PROMPT_COMMAND='history -a'
 
 #allows to cd into directory by typing the name
 shopt -s autocd
@@ -67,6 +68,7 @@ alias ll='ls -l'
 alias la='ls -la'
 alias ..='cd ..'
 alias c='clear'
+alias diff='diff -y --color'
 
 ## Temp?? for my app
 alias pl='/home/enryu/Main/git/pixelLauncher/python/main.py'
