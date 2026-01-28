@@ -38,15 +38,7 @@ to run the function/functions just add --run
 ```
 ---
 ### sample output
-<table>
-<tr>
-<th align="left">
-
-`$ ./setup.sh nvim`</th>
-</tr>
-<tr>
-<td>
-
+`$ ./setup.sh nvim`
 ```bash
 [DRY]  sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server pyright fzf npm base-devel ripgrep fd ed vi gvim
 [DRY]  sudo pacman -S --noconfirm --needed jdk-openjdk
@@ -58,9 +50,6 @@ to run the function/functions just add --run
 [DRY]  mkdir -p /home/S1lverCr0w/.config/nvim
 [DRY]  cp -r config/nvim /home/S1lverCr0w/.config/
 ```
-</td>
-</tr>
-</table>
 
 <table>
 <tr>
