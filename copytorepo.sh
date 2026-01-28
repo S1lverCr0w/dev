@@ -39,36 +39,42 @@ help() {
 
 # nvim #
 nvim() {
+	log rm -rf config/nvim/*
 	log cp -r $HOME/.config/nvim/* config/nvim
 }
 
 
 # vim #
 vim() {
+	log rm -rf config/vim/*
 	log cp -r $HOME/.vim/* config/vim
 }
 
 
 # alacritty #
 alacritty() {
+	log rm -rf config/alacritty/*
 	log cp -r $HOME/.config/alacritty/* config/alacritty
 }
 
 
 # helix #
 helix() {
+	log rm -rf config/helix/*
 	log cp -r $HOME/.config/helix/* config/helix
 }
 
 
 # zed #
 zed() {
+	log rm -rf config/zed/*
 	log cp -r $HOME/.config/zed/* config/zed
 }
 
 
 # nano #
 nano() {
+	log rm -rf config/nano/*
 	echo "$script_dir"
 	log cp $HOME/.config/nano/* $config/script_dir
 }
@@ -76,12 +82,14 @@ nano() {
 
 # hyprland #
 hyprland() {
+	log rm -rf config/hypr/*
 	log cp -r $HOME/.config/hypr/* config/hypr
 }
 
 
 # fabric #
 fabric() {
+	log rm -rf config/fabric/*
 	log cp -r $HOME/.config/fabric/* config/fabric
 	log rm -rf config/fabric/__pycache__
 }
@@ -89,12 +97,14 @@ fabric() {
 
 # waybar #
 waybar() {
+	log rm -rf config/waybar/*
 	log cp -r $HOME/.config/waybar/* config/waybar
 }
 
 
 # eww #
 eww() {
+	log rm -rf config/eww/*
 	log cp -r $HOME/.config/eww/* config/eww
 }
 
