@@ -48,7 +48,7 @@ to run the function/functions just add --run
 <td>
 
 ```bash
-[DRY]  sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server pyright fzf npm base-devel
+[DRY]  sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel
 [DRY]  sudo pacman -S --noconfirm --needed jdk-openjdk
 [DRY]  paru -S --noconfirm --needed jdtls
 [DRY]  mv /home/S1lverCr0w/.config/nvim /home/S1lverCr0w/.config/nvim_260128_115250
