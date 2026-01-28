@@ -1,6 +1,6 @@
 ## Dot File Manager
 
-quick script to set up a dev environment using bash
+quick script to set up a dev environment written in `bash`
 
 ### what can it do?
 - copy all the dot files into their respective directories and back up the current dot files
