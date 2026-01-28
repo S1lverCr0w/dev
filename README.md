@@ -7,6 +7,7 @@ for help run
 ```
 ./setup.sh --help
 ```
+---
 to do a dry run on all the functions and display the commands to be ran in the terminal
 ```
 ./setup.sh
@@ -19,6 +20,7 @@ delete cache and other trivial files taking space
 ```
 ./clean.sh clean
 ```
+---
 to do a dry run on a specific funtion/functions pass it as an argument
 ```
 ./setup.sh nvim font config
