@@ -48,11 +48,11 @@ to run the function/functions just add --run
 <td>
 
 ```bash
-[DRY]  sudo pacman -S --noconfirm --needed neovim bash-language-server pyright fzf npm base-devel
+[DRY]  sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server pyright fzf npm base-devel ripgrep fd ed vi gvim
 [DRY]  sudo pacman -S --noconfirm --needed jdk-openjdk
 [DRY]  paru -S --noconfirm --needed jdtls
-[DRY]  mv /home/S1lverCr0w/.config/nvim /home/S1lverCr0w/.config/nvim_260128_115250
-[DRY]  mv /home/S1lverCr0w/.local/share/nvim /home/S1lverCr0w/.local/share/nvim_260128_115250
+[DRY]  mv /home/S1lverCr0w/.config/nvim /home/S1lverCr0w/.config/nvim_260128_123427
+[DRY]  mv /home/S1lverCr0w/.local/share/nvim /home/S1lverCr0w/.local/share/nvim_260128_123427
 [DRY]  rm -rf /home/S1lverCr0w/.cache/nvim
 [DRY]  rm -rf /home/S1lverCr0w/.local/state/nvim
 [DRY]  mkdir -p /home/S1lverCr0w/.config/nvim
