@@ -36,5 +36,45 @@ to run the function/functions just add --run
 ```
 ./setup.sh nvim font config --run
 ```
+---
+### sample output
+<table>
+<tr>
+<th align="left">
 
+`$ ./setup.sh nvim`</th>
+</tr>
+<tr>
+<td>
 
+```bash
+[DRY]  sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server pyright fzf npm base-devel
+[DRY]  sudo pacman -S --noconfirm --needed jdk-openjdk
+[DRY]  paru -S --noconfirm --needed jdtls
+[DRY]  mv /home/S1lverCr0w/.config/nvim /home/S1lverCr0w/.config/nvim_260128_115250
+[DRY]  mv /home/S1lverCr0w/.local/share/nvim /home/S1lverCr0w/.local/share/nvim_260128_115250
+[DRY]  rm -rf /home/S1lverCr0w/.cache/nvim
+[DRY]  rm -rf /home/S1lverCr0w/.local/state/nvim
+[DRY]  mkdir -p /home/S1lverCr0w/.config/nvim
+[DRY]  cp -r config/nvim /home/S1lverCr0w/.config/
+```
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th align="left">
+
+`$ ./copytorepo.sh config --run`</th>
+</tr>
+<td>
+
+```bash
+[INFO] cp -r /home/S1lverCr0w/.bashrc config/bashrc
+[INFO] cp -r /home/S1lverCr0w/.bash_profile config/bash_profile
+[INFO] cp -r /home/S1lverCr0w/.zshrc config/zshrc
+```
+</td>
+</tr>
+</table>
