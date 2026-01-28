@@ -1,6 +1,12 @@
 ## Dot File Manager
 
-quick script to set up my dev environment using bash
+quick script to set up a dev environment using bash
+
+what can it do?
+    - copy all the dot files into their respective directories and back up the current dot files
+    - clean up all the backed up dot files once finished tinkering
+    - copy the all or specific dit directory to the repo si it can be backed up safely
+    - clean some Arch Linux specific cache
 
 ### usage
 for help run
