@@ -2,11 +2,12 @@
 
 quick script to set up a dev environment using bash
 
-what can it do?
-    - copy all the dot files into their respective directories and back up the current dot files
-    - clean up all the backed up dot files once finished tinkering
-    - copy the all or specific dit directory to the repo si it can be backed up safely
-    - clean some Arch Linux specific cache
+### what can it do?
+- copy all the dot files into their respective directories and back up the current dot files
+- do a dry run by default and actually execute the commands only if `--run` flag is provided
+- clean up all the backed up directories created once finished tinkering
+- copy the all or specific dot directory to the repo so it can be backed up safely
+- clean some Arch Linux specific cache
 
 ### usage
 for help run
