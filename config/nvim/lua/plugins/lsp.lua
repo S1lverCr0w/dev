@@ -8,7 +8,7 @@ return {
 			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
 			-- java jdtls full setup
-			-- require("java.jdtls_lsp"),
+			require("java.jdtls_lsp"),
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
