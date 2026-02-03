@@ -1,7 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	lazy = false,
-	branch = "main",
 	build = ":TSUpdate",
 
 	config = function()
@@ -13,31 +12,15 @@ return {
 			"java",
 			"python",
 			"bash",
-			-- "cpp",
-			-- "c_sharp",
-			-- "javascript",
-			-- "html",
-			-- "css",
-			-- "kotlin",
-			-- "cmake",
 			"make",
-			-- "php",
 			"lua",
-			-- "rust",
-			-- "json",
-			-- "go",
 			"markdown",
 			"markdown_inline",
-			-- "csv",
-			-- "diff",
-			-- "dockerfile",
-			-- "gitignore", -- causes an error
-			-- "typescript",
-			-- "yaml",
 			"vim",
 			"vimdoc",
 			"luadoc",
 			"diff",
+			-- "cpp", "c_sharp", "javascript", "html", "css", "kotlin", "cmake", "php", "rust", "json", "go", "csv", "diff", "dockerfile", "gitignore", -- causes an error "typescript", "yaml",
 		}
 		require("nvim-treesitter.install").compilers = {
 			"clang",
