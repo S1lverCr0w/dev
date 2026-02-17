@@ -1,4 +1,4 @@
-require("config.lazy")
+require("lazy_init")
 require("keymaps")
 -- require("treesitter.treesitter_setup").setup()
 -- require("java.jdtls_cmd") -- java jdtls eclipese lsp
