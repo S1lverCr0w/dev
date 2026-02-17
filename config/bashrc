@@ -69,6 +69,7 @@ alias la='ls -la'
 alias ..='cd ..'
 alias c='clear'
 alias diff='diff -y --color'
+alias tree='tree -C'
 
 ## Temp?? for my app
 alias pl='/home/enryu/Main/git/pixelLauncher/python/main.py'
