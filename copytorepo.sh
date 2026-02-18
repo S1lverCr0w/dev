@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ./helpers.sh
+
 set -euo pipefail
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -7,34 +9,6 @@ dry_run=true
 #colour the informative messages
 info="\033[31m[INFO]\033[0m"
 dry_msg="\033[33m[DRY]\033[0m "
-
-
-help() {
-	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
-	echo
-	echo "Options:"
-	echo "  --run         Execute actions without simulating"
-	echo "  --help        Show this help message"
-	echo
-	echo "Components:"
-	echo "  nvim          Copy Neovim config to repo"
-	echo "  vim           Copy vim config to repo"
-	echo "  alacritty     Copy Alacritty config to repo"
-	echo "  helix         Copy Helix config to repo"
-	echo "  zed           Copy Zed config to repo"
-	echo "  nano          Copy Nano config to repo"
-	echo "  hyprland      Copy Hyprland config to repo"
-	echo "  fabric        Copy Fabric config to repo"
-	echo "  waybar        Copy Waybar config to repo"
-	echo "  eww           Copy Eww config to repo"
-	echo "  config        Copy .bashrc and .bash_profile to repo"
-	echo
-	echo "Examples:"
-	echo "  $(basename "$0")              Simulate copying all configs to repo"
-	echo "  $(basename "$0") --run        Copy all configs to repo"
-	echo "  $(basename "$0") nvim         Simulate copying of Neovim config to repo"
-	echo "  $(basename "$0") --run nvim   Copy Neovim config to repo"
-}
 
 
 # nvim #
@@ -133,7 +107,7 @@ main() {
 	for arg in "$@"; do
 		case "$arg" in
 			--run) dry_run=false ;;
-			--help) help; exit 0 ;;
+			--help) help_copytorepo; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
 	done

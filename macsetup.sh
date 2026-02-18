@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ./helpers.sh
+
 set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -7,34 +9,6 @@ datetime=$(date +%y%m%d_%H%M%S)
 dry_run=true
 info="\033[31m[INFO]\033[0m"
 dry_msg="\033[33m[DRY]\033[0m "
-
-
-help() {
-	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
-	echo
-	echo "Options:"
-	# echo "  --dry       Simulate actions without executing"
-	echo "  --run       Execute actions without simulating"
-	echo "  --help      Show this help message"
-	echo
-	echo "Components:"
-	echo "  font        Install and configure fonts"
-	echo "  nvim        Set up Neovim config"
-	echo "  dev         Set up editors and some cmd tools"
-	echo "  alacritty   Set up Alacritty config"
-	echo "  helix       Set up Helix editor"
-	echo "  python      Install Python dev tools"
-	echo "  nano        Configure Nano"
-	echo "  hyprland    Set up Hyprland config"
-	echo "  fabric      Set up Fabric config"
-	echo "  waybar      Set up Waybar config"
-	echo "  config      Copy .bashrc and .bash_profile"
-	echo "  clean       Remove old backup configs"
-	echo
-	echo "Examples:"
-	echo "  $(basename "$0")                Run all setup steps"
-	echo "  $(basename "$0") --dry nvim     Dry-run Neovim setup"
-}
 
 
 # mac #
@@ -163,7 +137,7 @@ main() {
 	for arg in "$@"; do
 		case "$arg" in
 			--run) dry_run=false ;;
-			--help) help; exit 0 ;;
+			--help) help_macsetup; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
 	done

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ./helpers.sh
+
 set -euo pipefail
 
 #script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -8,39 +10,6 @@ dry_run=true
 #colour the informative messages
 info="\033[31m[INFO]\033[0m"
 dry_msg="\033[33m[DRY]\033[0m "
-
-
-help() {
-	echo "Usage: $(basename "$0") [OPTIONS] [COMPONENTS]"
-	echo
-	echo "Options:"
-	# echo "  --dry       Simulate actions without executing"
-	echo "  --run       Execute actions without simulating"
-	echo "  --help      Show this help message"
-	echo
-	echo "Components:"
-	echo "  font        Install and configure fonts"
-	echo "  nvim        Set up Neovim config"
-	echo "  nvim_clear  Delete the installed plugins for a fresh start (can help with some plugins not working and other errors)"
-	echo "  vim         Set up Vim config"
-	echo "  dev         Set up editors and some cmd tools"
-	echo "  alacritty   Set up Alacritty config"
-	echo "  helix       Set up Helix editor"
-	echo "  zed         Set up Zed editor"
-	echo "  python      Install Python dev tools"
-	echo "  nano        Configure Nano"
-	echo "  hyprland    Set up Hyprland config OUTDATED"
-	echo "  fabric      Set up Fabric config OUTDATED"
-	echo "  waybar      Set up Waybar config OUTDATED"
-	echo "  config      Copy .bashrc and .bash_profile"
-	echo "  clean       Remove old backup configs"
-	echo
-	echo "Examples:"
-	echo "  $(basename "$0")                Dry-run all setup steps"
-	echo "  $(basename "$0") --run          Run all setup steps"
-	echo "  $(basename "$0") nvim           Run the Neovim setup"
-	echo "  $(basename "$0") --dry nvim     Dry-run Neovim setup"
-}
 
 
 # fonts #
@@ -232,7 +201,7 @@ main() {
 	for arg in "$@"; do
 		case "$arg" in
 			--run) dry_run=false ;;
-			--help) help; exit 0 ;;
+			--help) help_setup; exit 0 ;;
 			*) args+=("$arg") ;;
 		esac
 	done
@@ -248,9 +217,9 @@ main() {
 		zed
 		python
 		nano
-		hyprland
-		waybar
-		fabric
+		# hyprland
+		# waybar
+		# fabric
 		config
 	else
 		for component in "${args[@]}"; do
