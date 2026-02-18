@@ -7,4 +7,4 @@
 - ripgrep
 
 
-[some of this setup is borrowed from]("https://github.com/LukeElrod/nvim")
+[some of this setup is borrowed from](https://github.com/LukeElrod/nvim)
