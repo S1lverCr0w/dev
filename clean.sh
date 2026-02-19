@@ -33,8 +33,10 @@ clean() {
 	log journalctl --disk-usage #show how much storage logs take
 
 	# mozilla stuff
-	[ -d $HOME/.mozilla/firefox/*.default-release/storage/default/* ] && \
-		log du -sh "$usr_dir/.mozilla/firefox/*.default-release/storage/default/"
+	# broken
+	# [ -d $HOME/.mozilla/firefox/*.default-release/storage/default/* ] && \
+
+	log du -sh -- "$usr_dir/.mozilla/firefox/*.default-release/storage/default/"
 	log rm -rf "$usr_dir/.mozilla/firefox/*.default-release/storage/default/*"
 }
 
