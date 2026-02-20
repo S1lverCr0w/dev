@@ -1,5 +1,6 @@
 require("lazy_conf")
 require("keymaps")
+require("auto_skip")
 -- require("treesitter.treesitter_setup").setup()
 -- require("java.jdtls_cmd") -- java jdtls eclipese lsp
 
