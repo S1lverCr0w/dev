@@ -6,18 +6,24 @@ local keys = {
 	[">"] = ">",
 	['"'] = '"',
 	["'"] = "'",
+	[";"] = ";",
+	-- [":"] = ":",
 	-- [" "] = " ", -- skip spaces
 }
 
+local filetypes = { -- apply only to these filestypes
+	"c",
+	"zig",
+	"java",
+	"fortran",
+	"make",
+	"python",
+	"lua",
+}
+
 vim.api.nvim_create_autocmd("FileType", {
-	-- apply only to these filestypes
-	pattern = {
-		"c",
-		"zig",
-		"java",
-		"python",
-		"lua",
-	},
+	pattern = filetypes,
+
 	callback = function()
 		for key, char in pairs(keys) do
 			vim.keymap.set("i", key, function()
@@ -30,7 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
 					return "<Right>" -- move the cursor to the right one char
 				end
 				return key
-			end, { expr = true, buffer = true })
+			end, { expr = true, buffer = true }) -- expr turns <Right> to expresion from string, buffer applies the command only to current buffer
 		end
 	end,
 })
