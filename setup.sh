@@ -146,6 +146,22 @@ waybar() {
 	log cp -r "config/waybar" "$HOME/.config/"
 }
 
+# sql #
+sql() {
+	log sudo pacman -S --noconfirm --needed mysql-workbench mariadb
+	log sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+	log sudo systemctl start mariadb.service
+
+	# sudo mariadb -u root -p
+	## in mariadb
+	# alter user 'root'@'localhost' identified by 'password'; # "password" is the actual apssword
+	# flush privileges
+	# \q
+	# sudo mariadb -u root -p
+	# use mysql
+	# \q
+}
+
 
 # confings #
 config() {
@@ -220,6 +236,7 @@ main() {
 		# hyprland
 		# waybar
 		# fabric
+		sql
 		config
 	else
 		for component in "${args[@]}"; do
