@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.g.loaded_netrwPlugin = 1
 
 -- base
+vim.opt.mouse = "" -- disable mouse
 vim.opt.number = true
 vim.wo.relativenumber = true
 vim.opt.tabstop = 4
