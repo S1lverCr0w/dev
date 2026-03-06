@@ -61,6 +61,7 @@ dev() {
 	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep ed vi neovim gvim nano
 	 log sudo pacman -S --noconfirm --needed tldr man-db texinfo wikiman
 	 log sudo pacman -S --noconfirm --needed zig gcc-fortran valgrind gdb
+	 log sudo pacman -S --noconfirm --needed dart-sass
 	 # not working ???
 	 # log printf '%s\n' 0a "set debuginfod enabled on" . w | log sudo ed /etc/gdb/gdbinit
 }
