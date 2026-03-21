@@ -11,6 +11,17 @@ dry_run=true
 info="\033[31m[INFO]\033[0m"
 dry_msg="\033[33m[DRY]\033[0m "
 
+## color palette # not used
+ERROR="\033[91m[ERROR]\033[0m"     # bright red
+SUCCESS="\033[92m[SUCCESS]\033[0m" # bright green
+WARNING="\033[93m[WARNING]\033[0m" # bright yellow/orange
+INFO="\033[96m[INFO]\033[0m"       # cyan (clean & visible)
+DEBUG="\033[94m[DEBUG]\033[0m"     # blue
+NOTICE="\033[95m[NOTICE]\033[0m"   # magenta
+DRY="\033[33m[DRY]\033[0m"         # normal yellow (your original)
+ORANGE="\033[38;5;208m[ORANGE]\033[0m"  # real orange
+## color palette # not used
+
 
 # fonts #
 font() {
