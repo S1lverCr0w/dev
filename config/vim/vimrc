@@ -36,12 +36,15 @@ augroup END
 " The ! means the package won't be loaded right away but when plugins are
 " loaded during initialization.
 if has('syntax') && has('eval')
-  packadd! matchit
+	packadd! matchit
 endif
+
+packadd! hlyank				" highlight yanked text
+packadd! comment			" auto comment with gcc
 
 
 set number relativenumber   " add line No's & make them relative
-set showmatch               " show matching
+"set showmatch               " show matching " makes vim auto indent very slow and unresponsive for a second
 set ignorecase              " case insensitive
 set hlsearch                " highlight search
 set incsearch               " incremental search
@@ -50,6 +53,7 @@ set tabstop=4               " number of columns occupied by a tab
 "set expandtab               " converts tabs to white space
 "set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
+set nowrap
 set wildmode=longest,list   " get bash-like tab completions
 set cc=80                  " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
@@ -61,6 +65,7 @@ set ttyfast                 " Speed up scrolling in Vim
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
 " "stop auto comment a new line
+
 autocm FileType * set formatoptions-=cro
 
 
@@ -69,12 +74,12 @@ autocm FileType * set formatoptions-=cro
 " # colourscheme #
 " https://github.com/joshdick/onedark.vim
 if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+	if (has("nvim"))
+		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	endif
+	if (has("termguicolors"))
+		set termguicolors
+	endif
 endif
 
 syntax on                   " syntax highlighting
