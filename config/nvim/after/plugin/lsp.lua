@@ -117,6 +117,12 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+-- bypass Mason and just use pyright from the official arch repos
+vim.lsp.config("pyright", {
+	capabilities = capabilities,
+})
+
+
 -- add capabilities of blink.cmp to vim lsp
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
@@ -129,7 +135,7 @@ local servers = { -- ... etc. See `:help lspconfig-all` for a list of all the pr
 	clangd = {},
 	zls = {},
 	-- -- gopls = {},
-	pyright = {},
+	-- pyright = {}, -- comment out to avoid install through npm
 	-- rust_analyzer = {},
 	asm_lsp = {},
 	bashls = {},
