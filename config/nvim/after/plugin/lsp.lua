@@ -117,7 +117,7 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
--- bypass Mason and just use pyright from the official arch repos
+-- -- bypass Mason and just use pyright from the official arch repos
 vim.lsp.config("pyright", {
 	capabilities = capabilities,
 })
