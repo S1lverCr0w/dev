@@ -1,15 +1,18 @@
-require("lazy_conf")
-require("keymaps")
-require("auto_skip")
--- require("treesitter.treesitter_setup").setup()
--- require("java.jdtls_cmd") -- java jdtls eclipese lsp
+vim.loader.enable() -- Enable faster startup by caching compiled Lua modules
+
+-- require 'options'		-- [[ Setting options ]]
+require 'keymaps'		-- [[ Basic Keymaps ]]
+require 'pack'			-- [[ Set up vim.pack ]]
+require 'plugins'		-- [[ Configure and install plugins ]]
+require 'auto_skip'
+
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- sync clipboard with system clipboard
--- vim.opt.clipboard = 'unnamedplus'
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = false
 
 --help files open in full window and are listed in buffer elements
 vim.api.nvim_create_autocmd("FileType", {
@@ -69,12 +72,19 @@ vim.opt.smartcase = true
 
 vim.opt.inccommand = "split"
 
+-- options from kickstart
+vim.o.showmode = false
+vim.o.breakindent = true
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+
 -- persist cursor line after closing
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	pattern = { "*" },
 	callback = function()
 		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-			vim.api.nvim_exec("normal! g'\"", false)
+			vim.api.nvim_exec2("normal! g'\"", { output = false })
 		end
 	end,
 })
@@ -88,25 +98,4 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- --keymap
--- vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
--- vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
--- vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
--- vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
---
--- --unhighlight
--- vim.keymap.set("n", "<leader>h", ":noh<CR>", { silent = true })
---
--- --terminal
--- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
---
--- --saving&quitting
--- vim.keymap.set("n", "<C-s>", ":w<CR>")
--- vim.keymap.set("n", "<F5>", ":wa<CR>")
--- vim.keymap.set("n", "<BS>", ":confirm bdelete<CR>")
--- vim.keymap.set("n", "<C-BS>", ":qa<CR>")
---
--- local builtin = require('telescope.builtin')
--- vim.keymap.set('n', '<leader>f', builtin.find_files, {})
--- vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
--- vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+require 'undo_tree'

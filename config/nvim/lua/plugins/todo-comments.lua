@@ -1,11 +1,5 @@
+local function gh(repo) return 'https://github.com/' .. repo end
+
 -- Highlight todo, notes, etc in comments
-return {
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			signs = false,
-		},
-	},
-}
+vim.pack.add { gh 'folke/todo-comments.nvim' }
+require('todo-comments').setup { signs = false }
