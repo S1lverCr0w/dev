@@ -1,33 +1,26 @@
--- Load plugin modules in order.
+local function load(plugin) require('plugins.' .. plugin) end
+-- local function load(plugin)
+-- 	require('plugins.' .. plugin)
+-- end
 
--- require 'plugins.guess-indent'
-require 'plugins.gitsigns'
-require 'plugins.which-key'
-require 'plugins.todo-comments'
-require 'plugins.telescope'
-require 'plugins.lspconfig'
-require 'plugins.conform'
-require 'plugins.blink'
-require 'plugins.treesitter'
-require 'plugins.indent_line'
-require 'plugins.onedark'
+-- plugin list -- require plugin file to enable
+load 'onedark'				-- ondeark but darker theme -- custom
+load 'indent_line'			-- indentation guides on blank lines
+load 'gitsigns'				-- git
+load 'which_key'			-- key maps
+load 'telescope'			-- fuzzy search
+load 'conform'				-- formatter [leader f] or autoformat otions
+load 'blink'				-- snippet engine --
+load 'todo_comments'		-- highlight todo, notes, etc in comments
+load 'treesitter'			-- used to highlight, edit and navigate code
+load 'lspconfig'			-- lsp config
 
--- The following comments only work if you have downloaded the repo, not just copy pasted the
--- init.lua. If you want these files, they are in the repository, so you can just download them and
--- place them in the correct locations.
 
--- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
+-- different way to load plugins -- by different i mean it looks less aesthetic
+-- -- local function path_d(plugin) return 'plugins.' .. plugin end
+-- local function path_d(plugin)
+-- 	return 'plugins.' .. plugin
+-- end
 --
---  Here are some example plugins that I've included in the repository.
---  Uncomment any of the lines below to enable them (you will need to restart nvim).
---
--- require 'plugins.debug'
--- require 'plugins.lint'
--- require 'plugins.autopairs'
--- require 'plugins.neo-tree'
--- require 'plugins.gitsigns' -- adds gitsigns recommended keymaps
-
--- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
---
---  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
--- require 'custom.plugins'
+-- -- plugin list -- require plugin file to enable
+-- require (path_d 'onedark')
