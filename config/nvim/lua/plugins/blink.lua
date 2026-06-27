@@ -52,9 +52,30 @@ require('blink.cmp').setup {
 	},
 
 	completion = {
+		-- ghost_text = {
+		-- 	enabled = true,
+		-- },
+		menu = {
+			-- border = "single",
+			scrollbar = true,
+			max_height = 6,
+			-- auto_show = false, -- hide menu if ghost text is enabled
+
+			-- -- to offset the autocomplete popup modify the source code of blink.cmp
+			-- -- .local/share/nvim/lazy/blink.cmp/lua/blink/cmp/completion/windows/menu.lua
+			-- -- change: local alignment_start_col = menu.renderer:get_alignment_start_col()
+			-- -- to: local alignment_start_col = menu.renderer:get_alignment_start_col() - 4 -- or any value needed
+		},
 		-- By default, you may press `<c-space>` to show the documentation.
 		-- Optionally, set `auto_show = true` to show the documentation after a delay.
-		documentation = { auto_show = false, auto_show_delay_ms = 500 },
+		documentation = {
+			auto_show = false,
+			auto_show_delay_ms = 500,
+			window = {
+				border = "single",
+				scrollbar = true,
+			},
+		},
 	},
 
 	sources = {

@@ -59,8 +59,8 @@ vim.opt.inccommand = "split"					--
 -- vim.o.splitbelow = true
 
 -- require files -- for modular setup
+require 'options'								-- custom options -- yank highlight / no auto comment on new line / open with cursor on same line as closing
 require 'plugins'								-- enable plugins in this file but declaring the path to it
 require 'keymaps'								-- custom mappings
-require 'options'								-- custom options -- yank highlight / no auto comment on new line / open with cursor on same line as closing
 require 'undo_tree'								-- enables undotree -- native plugin for non linear undo history
 require 'auto_skip'								-- skip brackets/quotes -- minimal
