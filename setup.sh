@@ -43,6 +43,12 @@ nvim() {
 	log sudo pacman -S --noconfirm --needed jdk-openjdk
 	log paru -S --noconfirm --needed jdtls
 
+	nvim_backup
+}
+
+
+# nvim_backup #
+nvim_backup() {
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
 	# [ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
 	nvim_clear
@@ -240,6 +246,7 @@ main() {
 	if [[ ${#args[@]} -eq 0 ]]; then
 		font
 		nvim
+		nvim_backup
 		nvim_clear
 		vim
 		dev
