@@ -6,7 +6,7 @@ local function load(plugin) require('plugins.' .. plugin) end
 -- plugin list -- require plugin file to enable
 load 'onedark'				-- ondeark but darker theme -- custom
 load 'indent_line'			-- indentation guides on blank lines
-load 'gitsigns'				-- git
+load 'gitsigns'				-- git diffs
 load 'which_key'			-- key maps
 load 'telescope'			-- fuzzy search
 load 'conform'				-- formatter [leader f] or autoformat otions
@@ -14,6 +14,8 @@ load 'blink'				-- snippet engine --
 load 'todo_comments'		-- highlight todo, notes, etc in comments
 load 'treesitter'			-- used to highlight, edit and navigate code
 load 'lspconfig'			-- lsp config
+
+
 
 
 -- different way to load plugins -- by different i mean it looks less aesthetic
