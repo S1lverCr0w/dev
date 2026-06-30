@@ -98,7 +98,8 @@ require('blink.cmp').setup {
 	signature = {
 		enabled = true,
 		window = {
-			border = "single",
+			-- border = "single",	-- takes 3 lines not great
+			border = "none",		-- takes 1 line very minimalist
 		},
 	},
 }
