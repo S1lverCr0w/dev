@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		-- vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "#1f232a", fg = "#4b5263" })
 
 		-- -- the currently selected item in the list
-		vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#2c313c" })
+		-- vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#2c313c" })
 		-- vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#2c313c", fg = "#ffffff", bold = true })
 	end,
 })
