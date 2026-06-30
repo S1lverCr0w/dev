@@ -94,5 +94,11 @@ require('blink.cmp').setup {
 	fuzzy = { implementation = 'lua' },
 
 	-- Shows a signature help window while you type arguments for a function
-	signature = { enabled = true },
+	-- signature = { enabled = true }, -- setup without border
+	signature = {
+		enabled = true,
+		window = {
+			border = "single",
+		},
+	},
 }

@@ -36,6 +36,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "#16181c", fg = "#abb2bf" }) -- subtle contrast
 		-- vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "#1f232a", fg = "#abb2bf" }) -- brighter/greyish
 
+		-- Signature Help / Parameter hints popup (e.g., typing printf(" )
+        vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { bg = "#16181c", fg = "#abb2bf" })
+        -- vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = "#16181c", fg = "#2c313c" })
+
 		-- -- menu Border
 		-- vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "#1f232a", fg = "#4b5263" })
 
