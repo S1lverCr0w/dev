@@ -9,6 +9,8 @@ local keys = {
 	["`"] = "`",
 	[";"] = ";",
 	[":"] = ":",
+	[","] = ",",
+	-- ["."] = ".", -- skip periods
 	-- [" "] = " ", -- skip spaces
 }
 
@@ -20,6 +22,7 @@ local filetypes = { -- apply only to these filestypes
 	"make",
 	"python",
 	"lua",
+	"fennel",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
