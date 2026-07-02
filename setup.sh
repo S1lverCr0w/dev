@@ -31,6 +31,12 @@ font() {
 }
 
 
+# misc #
+misc() {
+	log sudo pacman -S --noconfirm --needed dysk
+}
+
+
 # nvim #
 nvim() {
 	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server fzf base-devel ripgrep fd \
