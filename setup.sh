@@ -33,10 +33,10 @@ font() {
 
 # misc #
 misc() {
-	log sudo pacman -S --noconfirm --needed dysk
+	log doas pacman -S --noconfirm --needed dysk
 	# # gnome
 	# gsettings list-keys org.gnome.desktop.interface # show available options
-	gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false # disable nautilus open on hover
+	log gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false # disable nautilus open on hover
 }
 
 
@@ -254,6 +254,7 @@ main() {
 
 	if [[ ${#args[@]} -eq 0 ]]; then
 		font
+		misc
 		nvim
 		nvim_backup
 		nvim_clear
