@@ -34,6 +34,7 @@ font() {
 # misc #
 misc() {
 	log sudo pacman -S --noconfirm --needed dysk
+	gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false # disable nautilus open on hover
 }
 
 
