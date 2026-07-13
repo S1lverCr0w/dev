@@ -141,6 +141,10 @@ clean() {
 		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
 	find "$HOME" -maxdepth 1 -type f \
 		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+	log find $HOME -maxdepth 1 -type f \
+		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME" -maxdepth 1 -type f \
+		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 }
 
 
