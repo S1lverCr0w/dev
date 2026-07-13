@@ -42,7 +42,7 @@ misc() {
 
 # nvim #
 nvim() {
-	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server fzf base-devel ripgrep fd \
+	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli shellcheck fzf base-devel ripgrep fd \
 		 ed vi gvim
 	log sudo pacman -S --noconfirm --needed clang zls lua-language-server stylua
 	log sudo pacman -S --noconfirm --needed ty ruff
