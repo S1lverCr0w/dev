@@ -34,6 +34,7 @@ nvim() {
 	 # log brew install neovim fzf npm ripgrep fd ed
 	 log brew install neovim tree-sitter-cli fzf ripgrep fd ed
 	 log brew install gcc zig zls fortls lua lua-language-server stylua shellcheck
+	 log brew install fortls asm-lsp
 	 log brew install ty ruff
 	 log brew install jdtls openjdk@25
 	 log brew install fennel fnlfmt
