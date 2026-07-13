@@ -37,6 +37,9 @@ alias ll='ls -l'
 alias la='ls -la'
 alias ..='cd ..'
 alias c='clear'
+# gcc alias to gcc instead of apple default to clang
+alias gcc='gcc-16'
+alias cc='gcc-16'
 
 ## Temp?? for my app
 # alias pl='/home/enryu/Main/git/pixelLauncher/python/main.py'
