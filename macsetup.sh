@@ -22,7 +22,7 @@ mac() {
 
 # fonts ##
 font() {
-	log brew install font-jebrains-mono 
+	log brew install font-jebrains-mono \
 	ttf-material-symbols-variable-git
 	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
@@ -32,20 +32,40 @@ font() {
 # nvim #
 nvim() {
 	 # log brew install neovim fzf npm ripgrep fd ed
+	 log brew install neovim tree-sitter-cli fzf ripgrep fd ed
+	 log brew install gcc zig zls fortls lua lua-language-server stylua shellcheck
+	 log brew install fortls asm-lsp
+	 log brew install ty ruff
+	 log brew install jdtls openjdk@25
+	 log brew install fennel fnlfmt
 
+	 nvim_backup
+}
+
+
+# nvim_backup #
+nvim_backup() {
 	[ -d $HOME/.config/nvim/ ] &&  log mv $HOME/.config/nvim $HOME/.config/nvim_$datetime
-	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
-	log rm -rf $HOME/.cache/nvim
+	# [ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	nvim_clear
 
 	log mkdir -p "$HOME/.config/nvim"
 	log cp -r "config/nvim" "$HOME/.config/"
 }
 
 
+# nvim_clear #
+nvim_clear() {
+	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
+	log rm -rf $HOME/.cache/nvim
+	log rm -rf $HOME/.local/state/nvim
+}
+
+
 # dev #
 dev() {
 	 # log sudo pacman -S --noconfirm --needed base-devel fzf sed grep tldr man-db wikiman ed vi neovim gvim nano zig
-	 log brew install fzf tldr man-db ed neovim zig
+	 log brew install gcc fzf fd tldr man-db ed neovim zig zls ty ruff 
 }
 
 
@@ -69,7 +89,7 @@ helix() {
 
 # zed #
 zed() {
-	 log brew brew install zed
+	 log brew install zed
 
 	[ -d $HOME/.config/zed/ ] &&  log mv $HOME/.config/zed $HOME/.config/zed_$datetime
 	[ -d $HOME/.local/share/zed/ ] &&  log mv $HOME/.local/share/zed $HOME/.local/share/zed_$datetime
@@ -82,7 +102,7 @@ zed() {
 
 # python #
 python() {
-	log brew install python
+	log brew install python ty ruff
 	# pyside6-tools qt6-tools python-poetry
 }
 
@@ -94,6 +114,8 @@ config() {
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
 	echo "[INFO] source .bashrc or reopen the terminal"
+	[ -f $HOME/.zshrc ] &&  log mv $HOME/.zshrc $HOME/.zshrc_$datetime
+	log cp "config/zshrc" "$HOME/.zshrc"
 	log brew install coreutils
 }
 
@@ -119,6 +141,10 @@ clean() {
 		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
 	find "$HOME" -maxdepth 1 -type f \
 		-name ".bash_profile_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+	log find $HOME -maxdepth 1 -type f \
+		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
+	find "$HOME" -maxdepth 1 -type f \
+		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 }
 
 
@@ -150,7 +176,6 @@ main() {
 		helix
 		zed
 		python
-		nano
 		config
 	else
 		for component in "${args[@]}"; do
