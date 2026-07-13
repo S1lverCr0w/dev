@@ -42,15 +42,15 @@ misc() {
 
 # nvim #
 nvim() {
-	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli bash-language-server fzf base-devel ripgrep fd \
+	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli shellcheck fzf base-devel ripgrep fd \
 		 ed vi gvim
-	log sudo pacman -S --noconfirm --needed clang zls lua-language-server stylua
+	log sudo pacman -S --noconfirm --needed clang zig zls lua-language-server stylua
 	log sudo pacman -S --noconfirm --needed ty ruff
 	log sudo pacman -S --noconfirm --needed fennel fnlfmt
 	   # # run archlinux-java status to see if jdk path is set
 	   # # run archlinux-java fix to set path etc
 	log sudo pacman -S --noconfirm --needed jdk-openjdk
-	log paru -S --noconfirm --needed jdtls
+	log paru -S --noconfirm --needed jdtls fortls asm-lsp
 
 	nvim_backup
 }
@@ -89,8 +89,9 @@ vim() {
 dev() {
 	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep ed vi neovim gvim nano
 	 log sudo pacman -S --noconfirm --needed tldr man-db texinfo wikiman
-	 log sudo pacman -S --noconfirm --needed zig gcc-fortran valgrind gdb
+	 log sudo pacman -S --noconfirm --needed zig zls gcc-fortran valgrind gdb shellcheck
 	 log sudo pacman -S --noconfirm --needed dart-sass
+	log paru -S --noconfirm --needed jdtls fortls asm-lsp
 	 # not working ???
 	 # log printf '%s\n' 0a "set debuginfod enabled on" . w | log sudo ed /etc/gdb/gdbinit
 }
