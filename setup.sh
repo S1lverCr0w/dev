@@ -22,18 +22,20 @@ DRY="\033[33m[DRY]\033[0m"         # normal yellow (your original)
 ORANGE="\033[38;5;208m[ORANGE]\033[0m"  # real orange
 ## color palette # not used
 
+SU="doas" # privilege escalation program
+
 
 # fonts #
 font() {
 	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
-	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
+	log $SU pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
 
 
 # misc #
 misc() {
-	log doas pacman -S --noconfirm --needed dysk
+	log $SU pacman -S --noconfirm --needed dysk
 	# # gnome
 	# gsettings list-keys org.gnome.desktop.interface # show available options
 	log gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false # disable nautilus open on hover
@@ -42,14 +44,14 @@ misc() {
 
 # nvim #
 nvim() {
-	log sudo pacman -S --noconfirm --needed neovim tree-sitter-cli shellcheck fzf base-devel ripgrep fd \
+	log $SU pacman -S --noconfirm --needed neovim tree-sitter-cli shellcheck fzf base-devel ripgrep fd \
 		 ed vi gvim
-	log sudo pacman -S --noconfirm --needed clang zig zls lua-language-server stylua
-	log sudo pacman -S --noconfirm --needed ty ruff
-	log sudo pacman -S --noconfirm --needed fennel fnlfmt
+	log $SU pacman -S --noconfirm --needed clang zig zls lua-language-server stylua
+	log $SU pacman -S --noconfirm --needed ty ruff
+	# log $SU pacman -S --noconfirm --needed fennel fnlfmt
 	   # # run archlinux-java status to see if jdk path is set
 	   # # run archlinux-java fix to set path etc
-	log sudo pacman -S --noconfirm --needed jdk-openjdk
+	log $SU pacman -S --noconfirm --needed jdk-openjdk
 	log paru -S --noconfirm --needed jdtls fortls asm-lsp
 
 	nvim_backup
@@ -77,7 +79,7 @@ nvim_clear() {
 
 # vim #
 vim() {
-	log doas pacman -S --noconfirm --needed gvim
+	log $SU pacman -S --noconfirm --needed gvim
 	[ -d "$HOME/.vim" ] &&  log mv $HOME/.vim $HOME/.vim_$datetime
 	log rm -rf $HOME/.vim
 	log mkdir -p "$HOME/.vim"
@@ -87,19 +89,19 @@ vim() {
 
 # dev #
 dev() {
-	 log sudo pacman -S --noconfirm --needed base-devel fzf sed grep ed vi neovim gvim nano
-	 log sudo pacman -S --noconfirm --needed tldr man-db texinfo wikiman
-	 log sudo pacman -S --noconfirm --needed zig zls gcc-fortran valgrind gdb shellcheck
-	 log sudo pacman -S --noconfirm --needed dart-sass
+	 log $SU pacman -S --noconfirm --needed base-devel fzf sed grep ed vi neovim gvim nano
+	 log $SU pacman -S --noconfirm --needed tldr man-db texinfo wikiman
+	 log $SU pacman -S --noconfirm --needed zig zls gcc-fortran valgrind gdb shellcheck
+	 log $SU pacman -S --noconfirm --needed dart-sass
 	log paru -S --noconfirm --needed jdtls fortls asm-lsp
 	 # not working ???
-	 # log printf '%s\n' 0a "set debuginfod enabled on" . w | log sudo ed /etc/gdb/gdbinit
+	 # log printf '%s\n' 0a "set debuginfod enabled on" . w | log $SU ed /etc/gdb/gdbinit
 }
 
 
 # alacritty #
 alacritty() {
-	log sudo pacman -S --noconfirm --needed alacritty
+	log $SU pacman -S --noconfirm --needed alacritty
 	[ -d $HOME/.config/alacritty/ ] &&  log mv $HOME/.config/alacritty $HOME/.config/alacritty_$datetime
 	log mkdir -p "$HOME/.config/alacritty/"
 	log cp -r "config/alacritty" "$HOME/.config/"
@@ -108,7 +110,7 @@ alacritty() {
 
 # helix #
 helix() {
-	log sudo pacman -S --noconfirm --needed helix
+	log $SU pacman -S --noconfirm --needed helix
 	[ -d $HOME/.config/helix/ ] &&  log mv $HOME/.config/helix $HOME/.config/helix_$datetime
 	log mkdir -p "$HOME/.config/helix/"
 	log cp -r "config/helix" "$HOME/.config/"
@@ -117,7 +119,7 @@ helix() {
 
 # zed #
 zed() {
-	 log sudo pacman -S --noconfirm --needed zed amdvlk
+	 log $SU pacman -S --noconfirm --needed zed amdvlk
 
 	[ -d $HOME/.config/zed/ ] &&  log mv $HOME/.config/zed $HOME/.config/zed_$datetime
 	[ -d $HOME/.local/share/zed/ ] &&  log mv $HOME/.local/share/zed $HOME/.local/share/zed_$datetime
@@ -130,13 +132,13 @@ zed() {
 
 # python #
 python() {
-	log sudo pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
+	log $SU pacman -S --noconfirm --needed pyside6-tools qt6-tools python-poetry
 }
 
 
 # nano #
 nano() {
-	log sudo pacman -S --noconfirm --needed nano
+	log $SU pacman -S --noconfirm --needed nano
 	[ -d $HOME/.config/nano/nanorc ] &&  log mv $HOME/.config/nano/nanorc $HOME/.config/nano/nanorc_$datetime
 	log mkdir -p "$HOME/.config/nano/"
 	log cp "config/nanorc" "$HOME/.config/nano/"
@@ -145,7 +147,7 @@ nano() {
 
 # hypr #
 hyprland() {
-	log sudo pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
+	log $SU pacman -S --noconfirm --needed hyprland dunst wl-clipboard rofi
 	[ -d $HOME/.config/hypr/ ] &&  log mv $HOME/.config/hypr $HOME/.config/hypr_$datetime
 	log mkdir -p "$HOME/.config/hypr/"
 	log cp -r "config/hypr" "$HOME/.config/"
@@ -154,7 +156,7 @@ hyprland() {
 
 # fabric #
 fabric() {
-	log sudo pacman -S --noconfirm --needed python gtk3 cairo gtk-layer-shell libgirepository \
+	log $SU pacman -S --noconfirm --needed python gtk3 cairo gtk-layer-shell libgirepository \
 		gobject-introspection gobject-introspection-runtime python python-pip python-gobject \
 		python-cairo python-loguru pkgconf
 	[ -d $HOME/.config/fabric/ ] &&  log mv $HOME/.config/fabric $HOME/.config/fabric_$datetime
@@ -170,7 +172,7 @@ fabric() {
 
 # waybar #
 waybar() {
-	log sudo pacman -S --noconfirm --needed waybar pavucontrol hyprlock
+	log $SU pacman -S --noconfirm --needed waybar pavucontrol hyprlock
 	log paru -S --noconfirm --needed wlogout
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
@@ -179,16 +181,16 @@ waybar() {
 
 # sql #
 sql() {
-	log sudo pacman -S --noconfirm --needed mysql-workbench mariadb
-	log sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-	log sudo systemctl start mariadb.service
+	log $SU pacman -S --noconfirm --needed mysql-workbench mariadb
+	log $SU mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+	log $SU systemctl start mariadb.service
 
-	# sudo mariadb -u root -p
+	# $SU mariadb -u root -p
 	## in mariadb
 	# alter user 'root'@'localhost' identified by 'password'; # "password" is the actual apssword
 	# flush privileges
 	# \q
-	# sudo mariadb -u root -p
+	# $SU mariadb -u root -p
 	# use mysql
 	# \q
 }
