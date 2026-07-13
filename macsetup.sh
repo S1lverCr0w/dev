@@ -36,7 +36,7 @@ nvim() {
 	 log brew install gcc zig zls fortls lua lua-language-server stylua shellcheck
 	 log brew install fortls asm-lsp
 	 log brew install ty ruff
-	 log brew install jdtls openjdk@25
+	 log brew install jdtls openjdk
 	 log brew install fennel fnlfmt
 
 	 nvim_backup
