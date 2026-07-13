@@ -70,13 +70,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Enable the following language servers
 ---@type table<string, vim.lsp.Config>
-local servers = {
+local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
 	clangd = {},
 	zls = {},
 	fortls = {},
 	jdtls = {},
 	fennel = {},
-	-- bashls = {},
+	bashls = {},
+	asm_lsp = {},
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
