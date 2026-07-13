@@ -37,6 +37,8 @@ nvim() {
 	 log brew install ty ruff
 	 log brew install jdtls openjdk@25
 	 log brew install fennel fnlfmt
+
+	 nvim_backup
 }
 
 
