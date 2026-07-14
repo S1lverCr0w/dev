@@ -1,0 +1,30 @@
+local function gh(repo) return 'https://github.com/' .. repo end
+
+-- vim.pack.add { gh 'S1lverCr0w/edpt.nvim' }
+-- vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
+-- https://github.com/S1lverCr0w/edpt.nvim/tree/dev
+
+
+-- https://github.com/datsfilipe/nvim-colorscheme-template/tree/main
+-- vim.pack.add { { src = gh 'S1lverCr0w/edpt.nvim', version = 'dev', } }
+-- require('e_onedark').setup({
+-- 	-- theme = 'light',
+-- 	theme = 'dark',
+-- 	-- transparent = 'true',
+-- })
+-- vim.cmd.colorscheme 'e_onedark'
+
+
+
+vim.pack.add { gh 'S1lverCr0w/onedark.nvim' }
+require("onedarkpro").setup({
+	colors = {
+		onedark = { bg = "#1b1d22" },
+		onelight = { bg = "#f5f5f5" }, -- minimalist paper
+		-- onelight = { bg = "#e6e6e6" }, -- 90% value
+		-- onelight = { bg = "#d9d9d9" }, -- 85% value
+		-- onelight = { bg = "#eff1f5" }, -- soft cool gray
+	}
+})
+vim.cmd.colorscheme 'onedark'
+-- vim.cmd.colorscheme 'onelight'
