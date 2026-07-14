@@ -24,7 +24,10 @@ require("onedarkpro").setup({
 		-- onelight = { bg = "#e6e6e6" }, -- 90% value
 		-- onelight = { bg = "#d9d9d9" }, -- 85% value
 		-- onelight = { bg = "#eff1f5" }, -- soft cool gray
-	}
+	},
+-- 	filetypes = { false },
+-- 	-- plugins = { false },
+-- 	plugins = { false, treesitter = { true }, },
 })
 
 require 'OneDarkProDarkify'						-- custom script to modfy the onedarkpro theme
