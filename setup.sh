@@ -27,7 +27,7 @@ SU="doas" # privilege escalation program
 
 # fonts #
 font() {
-	log paru -S --noconfirm --needed ttf-material-symbols-variable-git
+	log yay -S --noconfirm --needed ttf-material-symbols-variable-git
 	log $SU pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
 }
@@ -52,7 +52,7 @@ nvim() {
 	   # # run archlinux-java status to see if jdk path is set
 	   # # run archlinux-java fix to set path etc
 	log $SU pacman -S --noconfirm --needed jdk-openjdk
-	log paru -S --noconfirm --needed jdtls fortls asm-lsp
+	log yay -S --noconfirm --needed jdtls fortls asm-lsp
 
 	nvim_backup
 }
@@ -93,7 +93,7 @@ dev() {
 	 log $SU pacman -S --noconfirm --needed tldr man-db texinfo wikiman
 	 log $SU pacman -S --noconfirm --needed zig zls gcc-fortran valgrind gdb shellcheck
 	 log $SU pacman -S --noconfirm --needed dart-sass
-	log paru -S --noconfirm --needed jdtls fortls asm-lsp
+	log yay -S --noconfirm --needed jdtls fortls asm-lsp
 	 # not working ???
 	 # log printf '%s\n' 0a "set debuginfod enabled on" . w | log $SU ed /etc/gdb/gdbinit
 }
@@ -173,7 +173,7 @@ fabric() {
 # waybar #
 waybar() {
 	log $SU pacman -S --noconfirm --needed waybar pavucontrol hyprlock
-	log paru -S --noconfirm --needed wlogout
+	log yay -S --noconfirm --needed wlogout
 	[ -d $HOME/.config/waybar/ ] &&  log mv $HOME/.config/waybar $HOME/.config/waybar_$datetime
 	log mkdir -p "$HOME/.config/waybar/"
 	log cp -r "config/waybar" "$HOME/.config/"
