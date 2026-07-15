@@ -4,8 +4,8 @@ local function load(plugin) require('plugins.' .. plugin) end
 -- end
 
 -- plugin list -- require plugin file to enable
--- load 'onedark'				-- ondearkpro theme -- custom
-load 'edpt'				-- ondeark but darker theme -- custom from scratch
+load 'onedark'				-- ondearkpro theme -- custom
+-- load 'edpt'				-- ondeark but darker theme -- custom from scratch
 load 'indent_line'			-- indentation guides on blank lines
 load 'gitsigns'				-- git diffs
 load 'which_key'			-- key maps

@@ -12,9 +12,9 @@ vim.pack.add { { src = gh 'S1lverCr0w/edpt.nvim', version = "devel", } }
 -- 	-- style = 'light',
 -- 	-- style = 'dark',
 -- })
--- require("onelight").setup()
-require("onedark").setup()
--- vim.cmd.colorscheme 'onedark'
+-- require("onelight").setup() -- lua command
+-- require("onedark").setup()
+-- vim.cmd.colorscheme 'onedark' --vim command
 -- vim.cmd.colorscheme 'onelight'
 
 -- require('e_onedark').setup({
@@ -42,3 +42,4 @@ require("onedark").setup()
 -- require 'OneDarkProDarkify'						-- custom script to modfy the onedarkpro theme
 -- vim.cmd.colorscheme 'onedark'
 -- vim.cmd.colorscheme 'onelight'
+
