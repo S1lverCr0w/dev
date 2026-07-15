@@ -74,7 +74,7 @@ nvim_clear() {
 	[ -d $HOME/.local/share/nvim/ ] &&  log mv $HOME/.local/share/nvim $HOME/.local/share/nvim_$datetime
 	log rm -rf "$HOME/.cache/nvim"
 	log rm -rf "$HOME/.local/state/nvim"
-	# log rm -rf "$HOME/.config/nvim/nvim-pack-lock.json"
+	log rm -rf "$HOME/.config/nvim/nvim-pack-lock.json"
 }
 
 
