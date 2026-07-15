@@ -1,3 +1,4 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
 -- [[ Fuzzy Finder (files, lsp, etc) ]]

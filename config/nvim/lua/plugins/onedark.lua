@@ -1,3 +1,4 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
 -- -- old colorscheme experiment with difeerent onedark fork that alrady has darkmode/lightmode

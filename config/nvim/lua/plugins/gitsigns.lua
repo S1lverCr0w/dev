@@ -1,3 +1,4 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
 -- Here is a more advanced configuration example that passes options to `gitsigns.nvim`

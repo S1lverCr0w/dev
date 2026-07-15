@@ -1,9 +1,9 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
 -- vim.pack.add { gh 'S1lverCr0w/edpt.nvim' }
 -- vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
 -- https://github.com/S1lverCr0w/edpt.nvim/tree/dev
-
 
 -- https://github.com/datsfilipe/nvim-colorscheme-template/tree/main
 
@@ -13,8 +13,8 @@ vim.pack.add { { src = gh 'S1lverCr0w/edpt.nvim', version = "devel", } }
 -- 	-- style = 'dark',
 -- })
 -- require("onelight").setup()
--- require("onedark").setup()
-vim.cmd.colorscheme 'onedark'
+require("onedark").setup()
+-- vim.cmd.colorscheme 'onedark'
 -- vim.cmd.colorscheme 'onelight'
 
 -- require('e_onedark').setup({
