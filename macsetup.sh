@@ -78,6 +78,15 @@ alacritty() {
 }
 
 
+# kitty #
+kitty() {
+	log brew install kitty
+	[ -d $HOME/.config/kitty/ ] &&  log mv $HOME/.config/kitty $HOME/.config/kitty_$datetime
+	log mkdir -p "$HOME/.config/kitty/"
+	log gcp -r "config/kitty/" "$HOME/.config/"
+}
+
+
 # helix #
 helix() {
 	log brew install helix
