@@ -32,6 +32,13 @@ alacritty() {
 }
 
 
+# kitty #
+kitty() {
+	log rm -rf config/kitty/*
+	log cp -r $HOME/.config/kitty/* config/kitty
+}
+
+
 # helix #
 helix() {
 	log rm -rf config/helix/*

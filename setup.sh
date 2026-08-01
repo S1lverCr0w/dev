@@ -109,6 +109,15 @@ alacritty() {
 }
 
 
+# kitty #
+kitty() {
+	log $SU pacman -S --noconfirm --needed kitty
+	[ -d $HOME/.config/kitty/ ] &&  log mv $HOME/.config/kitty $HOME/.config/kitty_$datetime
+	log mkdir -p "$HOME/.config/kitty/"
+	log cp -r "config/kitty" "$HOME/.config/"
+}
+
+
 # helix #
 helix() {
 	log $SU pacman -S --noconfirm --needed helix
@@ -265,6 +274,7 @@ main() {
 		vim
 		dev
 		alacritty
+		kitty
 		helix
 		zed
 		python
