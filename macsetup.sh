@@ -130,7 +130,7 @@ config() {
 	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
-	echo "[INFO] source .bashrc or reopen the terminal"
+	printf "$info source .bashrc or reopen the terminal\n"
 	[ -f $HOME/.zshrc ] &&  log mv $HOME/.zshrc $HOME/.zshrc_$datetime
 	log cp "config/zshrc" "$HOME/.zshrc"
 	log brew install coreutils
@@ -139,7 +139,7 @@ config() {
 
 # clean #
 clean() {
-	echo "[INFO] Cleaning up backup directories created"
+	printf "$info Cleaning up backup directories created\n"
 	log find "$HOME/.config" -maxdepth 1 -type d \
 		-name "*_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d \
@@ -167,9 +167,9 @@ clean() {
 
 log() {
 	if [[ "$dry_run" == true ]]; then
-		echo "[DRY] $*"
+		printf "$dry_msg $*\n"
 	else
-		echo "[INFO] $*"
+		printf "$info_msg $*\n"
 		eval "$@"
 	fi
 }
@@ -199,8 +199,8 @@ main() {
 			if declare -f "$component" > /dev/null; then
 				"$component"
 			else
-				echo "Unknown argument: $component"
-				echo "Use --help to see valid options."
+				printf "Unknown argument: $component\n"
+				printf "Use --help to see valid options.\n"
 				exit 1
 			fi
 		done
