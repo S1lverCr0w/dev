@@ -8,12 +8,13 @@ set -euo pipefail
 datetime=$(date +%y%m%d_%H%M%S)
 dry_run=true
 info="\033[31m[INFO]\033[0m"
-dry_msg="\033[33m[DRY]\033[0m "
+dry_msg="\033[33m[DRY]\033[0m"
+error_msg='\033[33m[ERROR]\033[0m'
 
 
 # # make sure the script runs only on mac os
-if [[ "$OSTYPE" != "darwin"* ]] then
-	echo "worng operating system"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+	printf "$error_msg: wrong operating system\n" >&2
 	exit 1
 fi
 
