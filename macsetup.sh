@@ -11,6 +11,13 @@ info="\033[31m[INFO]\033[0m"
 dry_msg="\033[33m[DRY]\033[0m "
 
 
+# # make sure the script runs only on mac os
+if [[ "$OSTYPE" != "darwin"* ]] then
+	echo "worng operating system"
+	exit 1
+fi
+
+
 # mac #
 mac() {
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
