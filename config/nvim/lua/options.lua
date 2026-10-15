@@ -11,9 +11,16 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 -- stop nvim from adding comments on new lines after a comment
 -- <C-u> removes comment in insert mode
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
+	pattern = { "*" },
 	callback = function()
-		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+		local exclude_filetype = {
+			markdown = true,
+			lua = false,
+		}
+		local current_filetype = vim.bo.filetype
+		if not exclude_filetype[current_filetype] then
+			vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+		end
 	end,
 })
 
