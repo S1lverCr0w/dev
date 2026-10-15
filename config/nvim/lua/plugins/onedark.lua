@@ -7,7 +7,7 @@ vim.pack.add({ { src = gh("S1lverCr0w/onedark.nvim"), version = "dev" } })
 -- 	-- style = 'dark',
 -- })
 
-require("onelight").setup({}) -- lua command
--- require("onedark").setup({})
+-- require("onelight").setup({}) -- lua command
+require("onedark").setup({})
 -- vim.cmd.colorscheme 'onedark' -- vim command
 -- vim.cmd.colorscheme 'onelight'

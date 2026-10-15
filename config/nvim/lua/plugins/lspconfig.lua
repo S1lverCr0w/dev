@@ -79,6 +79,7 @@ local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-conf
 	fennel = {},
 	bashls = {},
 	asm_lsp = {},
+	lemminx = {},
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
