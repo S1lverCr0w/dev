@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "*" },
 	callback = function()
 		local exclude_filetype = {
-			markdown = true,
+			markdown = false, -- it does not work in general, should be lsp issue
 			lua = false,
 		}
 		local current_filetype = vim.bo.filetype
