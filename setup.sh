@@ -245,6 +245,29 @@ clean() {
 }
 
 
+# run all the funcs
+all() {
+	font
+	misc
+	nvim
+	nvim_backup
+	nvim_clear
+	vim
+	dev
+	alacritty
+	kitty
+	helix
+	zed
+	python
+	nano
+	# hyprland
+	# waybar
+	# fabric
+	# sql # remove for now
+	config
+}
+
+
 log() {
 	if [[ "$dry_run" == true ]]; then
 		printf "$dry_msg $*\n"
@@ -266,24 +289,7 @@ main() {
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
-		font
-		misc
-		nvim
-		nvim_backup
-		nvim_clear
-		vim
-		dev
-		alacritty
-		kitty
-		helix
-		zed
-		python
-		nano
-		# hyprland
-		# waybar
-		# fabric
-		sql
-		config
+		help_setup
 	else
 		for component in "${args[@]}"; do
 			if declare -f "$component" > /dev/null; then
