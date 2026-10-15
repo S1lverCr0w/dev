@@ -165,6 +165,19 @@ clean() {
 }
 
 
+# run all the funcs
+all() {
+	font
+	nvim
+	dev
+	alacritty
+	helix
+	zed
+	python
+	config
+}
+
+
 log() {
 	if [[ "$dry_run" == true ]]; then
 		printf "$dry_msg $*\n"
@@ -186,14 +199,7 @@ main() {
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
-		font
-		nvim
-		dev
-		alacritty
-		helix
-		zed
-		python
-		config
+		help_macsetup
 	else
 		for component in "${args[@]}"; do
 			if declare -f "$component" > /dev/null; then
