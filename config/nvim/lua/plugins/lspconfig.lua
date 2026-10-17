@@ -80,7 +80,6 @@ local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-conf
 	bashls = {},
 	asm_lsp = {},
 	lemminx = {},
-	tinymist = {},
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
@@ -99,6 +98,14 @@ local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-conf
 		},
 	},
 	ruff = {},
+
+	-- typst --  needs to change some time in the future as it's more of a temp hack and I don't like it
+	tinymist = {
+		settings = {
+			formatterMode = "typstyle",
+			formatterIndentSize = 4,
+		}
+	},
 
 	stylua = {}, -- Used to format Lua code
 

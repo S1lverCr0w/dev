@@ -33,6 +33,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function() vim.hl.on_yank() end,
 })
 
+-- typst --  needs to change some time in the future as it's more of a temp hack and I don't like it
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "typst",
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+    end,
+})
+
 -- -- completion pop-up color change to maek it stand out from the bg -- maybe add to onedark setup??
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 -- 	pattern = "*",
