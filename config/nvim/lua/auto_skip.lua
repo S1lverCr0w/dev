@@ -23,6 +23,7 @@ local filetypes = { -- apply only to these filestypes
 	"python",
 	"lua",
 	"fennel",
+	"typst",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
