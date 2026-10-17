@@ -48,6 +48,7 @@ nvim() {
 		 ed vi gvim
 	log $SU pacman -S --noconfirm --needed clang zig zls lua-language-server stylua
 	log $SU pacman -S --noconfirm --needed ty ruff
+	log $SU pacman -S --noconfirm --needed typst tinymist
 	# log $SU pacman -S --noconfirm --needed fennel fnlfmt
 	   # # run archlinux-java status to see if jdk path is set
 	   # # run archlinux-java fix to set path etc

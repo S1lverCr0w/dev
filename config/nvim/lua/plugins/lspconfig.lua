@@ -80,6 +80,7 @@ local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-conf
 	bashls = {},
 	asm_lsp = {},
 	lemminx = {},
+	tinymist = {},
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
