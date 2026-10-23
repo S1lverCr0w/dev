@@ -101,9 +101,11 @@ local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-conf
 
 	-- typst --  needs to change some time in the future as it's more of a temp hack and I don't like it
 	tinymist = {
+		cmd = { "tinymist" },
+		filetypes = { "typst" },
 		settings = {
-			formatterMode = "typstyle",
-			formatterIndentSize = 4,
+			formattermode = "typstyle",
+			formatterindentsize = 4,
 		}
 	},
 
