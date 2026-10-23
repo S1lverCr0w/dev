@@ -31,7 +31,11 @@ mac() {
 # fonts ##
 font() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	log brew install font-jebrains-mono
+=======
+	log brew install font-jebrains-mono \
+>>>>>>> dev
 =======
 	log brew install font-jebrains-mono \
 >>>>>>> dev
@@ -49,7 +53,11 @@ nvim() {
 	 log brew install fortls asm-lsp
 	 log brew install ty ruff
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 log brew install jdtls openjdk@25
+=======
+	 log brew install jdtls openjdk
+>>>>>>> dev
 =======
 	 log brew install jdtls openjdk
 >>>>>>> dev
@@ -139,7 +147,11 @@ config() {
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	echo "[INFO] source .bashrc or reopen the terminal"
+=======
+	printf "$info source .bashrc or reopen the terminal\n"
+>>>>>>> dev
 =======
 	printf "$info source .bashrc or reopen the terminal\n"
 >>>>>>> dev
@@ -175,7 +187,10 @@ clean() {
 	find "$HOME" -maxdepth 1 -type f \
 		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> dev
 }
 
 
@@ -189,6 +204,9 @@ all() {
 	zed
 	python
 	config
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 >>>>>>> dev
 }
 
@@ -215,6 +233,7 @@ main() {
 
 	if [[ ${#args[@]} -eq 0 ]]; then
 <<<<<<< HEAD
+<<<<<<< HEAD
 		font
 		nvim
 		nvim_backup
@@ -226,6 +245,9 @@ main() {
 		python
 		nano
 		config
+=======
+		help_macsetup
+>>>>>>> dev
 =======
 		help_macsetup
 >>>>>>> dev
