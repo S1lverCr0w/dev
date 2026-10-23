@@ -35,7 +35,8 @@ font() {
 
 # misc #
 misc() {
-	log $SU pacman -S --noconfirm --needed dysk
+	log $SU pacman -S --noconfirm --needed dysk inxi
+	# # inxi -Fy for harhware info inxi -Fazy for full hardware info
 	# # gnome
 	# gsettings list-keys org.gnome.desktop.interface # show available options
 	log gsettings set org.gnome.nautilus.preferences open-folder-on-dnd-hover false # disable nautilus open on hover
