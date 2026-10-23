@@ -8,7 +8,15 @@ set -euo pipefail
 datetime=$(date +%y%m%d_%H%M%S)
 dry_run=true
 info="\033[31m[INFO]\033[0m"
-dry_msg="\033[33m[DRY]\033[0m "
+dry_msg="\033[33m[DRY]\033[0m"
+error_msg='\033[33m[ERROR]\033[0m'
+
+
+# # make sure the script runs only on mac os
+if [[ "$OSTYPE" != "darwin"* ]]; then
+	printf "$error_msg: wrong operating system\n" >&2
+	exit 1
+fi
 
 
 # mac #
@@ -22,7 +30,11 @@ mac() {
 
 # fonts ##
 font() {
+<<<<<<< HEAD
 	log brew install font-jebrains-mono
+=======
+	log brew install font-jebrains-mono \
+>>>>>>> dev
 	ttf-material-symbols-variable-git
 	log sudo pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
@@ -36,7 +48,11 @@ nvim() {
 	 log brew install gcc zig zls fortls lua lua-language-server stylua shellcheck
 	 log brew install fortls asm-lsp
 	 log brew install ty ruff
+<<<<<<< HEAD
 	 log brew install jdtls openjdk@25
+=======
+	 log brew install jdtls openjdk
+>>>>>>> dev
 	 log brew install fennel fnlfmt
 
 	 nvim_backup
@@ -78,6 +94,15 @@ alacritty() {
 }
 
 
+# kitty #
+kitty() {
+	log brew install kitty
+	[ -d $HOME/.config/kitty/ ] &&  log mv $HOME/.config/kitty $HOME/.config/kitty_$datetime
+	log mkdir -p "$HOME/.config/kitty/"
+	log gcp -r "config/kitty/" "$HOME/.config/"
+}
+
+
 # helix #
 helix() {
 	log brew install helix
@@ -89,7 +114,7 @@ helix() {
 
 # zed #
 zed() {
-	 log brew brew install zed
+	 log brew install zed
 
 	[ -d $HOME/.config/zed/ ] &&  log mv $HOME/.config/zed $HOME/.config/zed_$datetime
 	[ -d $HOME/.local/share/zed/ ] &&  log mv $HOME/.local/share/zed $HOME/.local/share/zed_$datetime
@@ -113,7 +138,11 @@ config() {
 	log cp "config/bashrc" "$HOME/.bashrc"
 	[ -f $HOME/.bash_profile ] &&  log mv $HOME/.bash_profile $HOME/.bash_profile_$datetime
 	log cp "config/bash_profile" "$HOME/.bash_profile"
+<<<<<<< HEAD
 	echo "[INFO] source .bashrc or reopen the terminal"
+=======
+	printf "$info source .bashrc or reopen the terminal\n"
+>>>>>>> dev
 	[ -f $HOME/.zshrc ] &&  log mv $HOME/.zshrc $HOME/.zshrc_$datetime
 	log cp "config/zshrc" "$HOME/.zshrc"
 	log brew install coreutils
@@ -122,7 +151,7 @@ config() {
 
 # clean #
 clean() {
-	echo "[INFO] Cleaning up backup directories created"
+	printf "$info Cleaning up backup directories created\n"
 	log find "$HOME/.config" -maxdepth 1 -type d \
 		-name "*_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
 	find "$HOME/.config" -maxdepth 1 -type d \
@@ -145,14 +174,30 @@ clean() {
 		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec rm -rfv {} +
 	find "$HOME" -maxdepth 1 -type f \
 		-name ".zshrc_[0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]" -exec printf "$info %s\n" {} \;
+<<<<<<< HEAD
+=======
+}
+
+
+# run all the funcs
+all() {
+	font
+	nvim
+	dev
+	alacritty
+	helix
+	zed
+	python
+	config
+>>>>>>> dev
 }
 
 
 log() {
 	if [[ "$dry_run" == true ]]; then
-		echo "[DRY] $*"
+		printf "$dry_msg $*\n"
 	else
-		echo "[INFO] $*"
+		printf "$info_msg $*\n"
 		eval "$@"
 	fi
 }
@@ -169,6 +214,7 @@ main() {
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
+<<<<<<< HEAD
 		font
 		nvim
 		nvim_backup
@@ -180,13 +226,16 @@ main() {
 		python
 		nano
 		config
+=======
+		help_macsetup
+>>>>>>> dev
 	else
 		for component in "${args[@]}"; do
 			if declare -f "$component" > /dev/null; then
 				"$component"
 			else
-				echo "Unknown argument: $component"
-				echo "Use --help to see valid options."
+				printf "Unknown argument: $component\n"
+				printf "Use --help to see valid options.\n"
 				exit 1
 			fi
 		done

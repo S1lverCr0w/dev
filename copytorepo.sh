@@ -32,6 +32,13 @@ alacritty() {
 }
 
 
+# kitty #
+kitty() {
+	log rm -rf config/kitty/*
+	log cp -r $HOME/.config/kitty/* config/kitty
+}
+
+
 # helix #
 helix() {
 	log rm -rf config/helix/*
@@ -92,6 +99,21 @@ config() {
 }
 
 
+# run all the funcs
+all() {
+	nvim
+	vim
+	alacritty
+	helix
+	zed
+	nano
+	hyprland
+	fabric
+	waybar
+	config
+}
+
+
 log() {
 	if [[ "$dry_run" == true ]]; then
 		printf "$dry_msg $*\n"
@@ -113,16 +135,7 @@ main() {
 	done
 
 	if [[ ${#args[@]} -eq 0 ]]; then
-		nvim
-		vim
-		alacritty
-		helix
-		zed
-		nano
-		hyprland
-		fabric
-		waybar
-		config
+		help_copytorepo
 	else
 		for argument in "${args[@]}"; do
 			if declare -f "$argument" > /dev/null; then

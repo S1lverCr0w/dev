@@ -1,3 +1,4 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
 -- Useful status updates for LSP.
@@ -70,13 +71,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Enable the following language servers
 ---@type table<string, vim.lsp.Config>
-local servers = {
+local servers = { -- -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
 	clangd = {},
 	zls = {},
 	fortls = {},
 	jdtls = {},
 	fennel = {},
-	-- bashls = {},
+	bashls = {},
+	asm_lsp = {},
+	lemminx = {},
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
@@ -95,6 +98,16 @@ local servers = {
 		},
 	},
 	ruff = {},
+
+	-- typst --  needs to change some time in the future as it's more of a temp hack and I don't like it
+	tinymist = {
+		cmd = { "tinymist" },
+		filetypes = { "typst" },
+		settings = {
+			formattermode = "typstyle",
+			formatterindentsize = 4,
+		}
+	},
 
 	stylua = {}, -- Used to format Lua code
 

@@ -9,6 +9,8 @@ local keys = {
 	["`"] = "`",
 	[";"] = ";",
 	[":"] = ":",
+	[","] = ",",
+	-- ["."] = ".", -- skip periods
 	-- [" "] = " ", -- skip spaces
 }
 
@@ -20,6 +22,8 @@ local filetypes = { -- apply only to these filestypes
 	"make",
 	"python",
 	"lua",
+	"fennel",
+	"typst",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -28,8 +32,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		for key, char in pairs(keys) do
 			vim.keymap.set("i", key, function()
-				-- _ is a throwaway variable as we only need the column where the cursor is (_ represents the row)
-				local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+				-- row (used to be _) is a throwaway variable as we only need the column where the cursor is (row represents the row)
+				local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 				local line = vim.api.nvim_get_current_line()
 				local next_char = line:sub(col + 1, col + 1)
 

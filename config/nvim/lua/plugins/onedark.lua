@@ -1,5 +1,13 @@
+-- stylua: ignore
 local function gh(repo) return 'https://github.com/' .. repo end
 
-vim.pack.add { gh 'S1lverCr0w/edpt-dark.nvim' }
+vim.pack.add({ { src = gh("S1lverCr0w/onedark.nvim"), version = "dev" } })
+-- require("onelight").setup({
+-- 	-- style = 'light',
+-- 	-- style = 'dark',
+-- })
 
-vim.cmd.colorscheme 'onedark'
+-- require("onelight").setup({}) -- lua command
+require("onedark").setup({})
+-- vim.cmd.colorscheme 'onedark' -- vim command
+-- vim.cmd.colorscheme 'onelight'
