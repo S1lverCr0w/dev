@@ -84,3 +84,16 @@ lspci -nnk -d 1002:ab28
 lspci -nnk -d 1002:7590
 ```
 
+before building the vm: 
+\[ wip\]
+
+make ufw allow virbr0 to connect to the internet
+```bash
+doas ufw allow in on virbr0          # VM -> Arch: getting an IP address and DNS (and file sharing later)
+doas ufw route allow in on virbr0    # VM -> internet
+doas ufw route allow out on virbr0
+doas ufw status verbose
+```
+
+
+
