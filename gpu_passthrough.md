@@ -28,3 +28,12 @@ for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
     done;
 done;
 ```
+
+### step 3 - install and configure the vm
+```bash
+doas pacman -S --needed qemu-desktop libvirt virt-manager edk2-ovmf dnsmasq swtpm dmidecode
+doas systemctl enable --now libvirtd.service
+doas usermod -aG libvirt "$USER"        # log out and back in afterwards
+doas virsh net-autostart default
+doas virsh net-start default
+```
