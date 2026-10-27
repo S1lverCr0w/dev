@@ -37,3 +37,50 @@ doas usermod -aG libvirt "$USER"        # log out and back in afterwards
 doas virsh net-autostart default
 doas virsh net-start default
 ```
+log out and back in then check if everything wen well
+```bash
+virsh -c qemu:///system list --all
+ls -l /dev/kvm
+lsmod | grep kvm_amd
+```
+if there's an existing vm remove it if not needed
+```bash
+virsh -c qemu:///system undefine win10bmtl --nvram
+virsh -c qemu:///system list --all    # should now be empty
+```
+mkinicpio check
+```bash
+grep -E '^(MODULES|HOOKS)' /etc/mkinitcpio.conf
+ls /etc/modprobe.d/
+```
+
+### step 4 - bind the rx6600xt to vfio-pci (static)
+```bash
+# 6.1 Tell vfio-pci to claim the 6600 XT and its audio
+doas tee /etc/modprobe.d/vfio.conf >/dev/null <<'EOF'
+options vfio-pci ids=1002:73ff,1002:ab28
+softdep drm pre: vfio-pci
+EOF
+cat /etc/modprobe.d/vfio.conf
+
+# 6.2 Load VFIO in the initramfs, before amdgpu (backup first)
+doas cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.bak-pre-vfio
+doas sed -i 's/^MODULES=()$/MODULES=(vfio_pci vfio vfio_iommu_type1)/' /etc/mkinitcpio.conf
+grep '^MODULES' /etc/mkinitcpio.conf
+doas mkinitcpio -P
+lsinitcpio /boot/initramfs-linux-lts.img | grep -E 'vfio|modprobe.d'
+```
+
+before the reboot: check the image contains three vfio modules and the config
+```bash
+doas mkinitcpio -P
+lsinitcpio /boot/initramfs-linux-lts.img | grep -E 'vfio|modprobe.d'
+```
+
+reboot and then run:
+```bash
+lspci -nnk -d 1002:73ff
+lspci -nnk -d 1002:ab28
+lspci -nnk -d 1002:7590
+```
+
