@@ -95,5 +95,9 @@ doas ufw route allow out on virbr0
 doas ufw status verbose
 ```
 
-
+looking glass b7 idd release candidate [B7-829-cdba29f2](https://looking-glass.io/docs/B7-829-cdba29f2/)
+install dependencies on arch
+```bash
+doas pacman -Syu cmake gcc libgl libegl fontconfig spice-protocol make nettle pkgconf binutils libxi libxinerama libxss libxcursor libxpresent libxkbcommon wayland-protocols ttf-dejavu libsamplerate
+```
 
