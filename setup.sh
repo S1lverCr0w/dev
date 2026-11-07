@@ -22,14 +22,17 @@ DRY="\033[33m[DRY]\033[0m"         # normal yellow (your original)
 ORANGE="\033[38;5;208m[ORANGE]\033[0m"  # real orange
 ## color palette # not used
 
-SU="doas" # privilege escalation program
+declare -r SU="doas" # privilege escalation program
+declare -ra P_ARG=(pacman -S --noconfirm --needed)
 
 
 # fonts #
-font() {
-	log yay -S --noconfirm --needed ttf-material-symbols-variable-git
-	log $SU pacman -S --noconfirm --needed ttf-nerd-fonts-symbols ttf-jetbrains-mono \
+function font() {
+	log yay -S --noconfirm --needed ttf-material-symbols-variable-git tex-gyre-math-fonts
+	log $SU pacman -S --noconfirm --needed ttf-nerd-fonts-symbols \
 		otf-font-awesome wqy-zenhei ibus-libpinyin noto-fonts-cjk
+	# coding/typst
+	log "$SU" "${P_ARG[@]}" ttf-jetbrains-mono ttf-fira-code tex-gyre-fonts
 }
 
 
